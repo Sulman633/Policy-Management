@@ -3,6 +3,7 @@
 <%@attribute name="footer" fragment="true" %>
 <%@attribute name="userType" required="true"%>
 
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -24,7 +25,7 @@
 <title>Fast Track Policy & Claims Service</title>
 </head>
 <body>
-	<div id="wrapper">
+	<div id="wrapp">
 		<!-- navigation -->
 		<nav class="navbar navbar-default navbar-static-top" role="navigation">
 			<!-- navbar header -->
@@ -50,12 +51,16 @@
 		</nav>
 	</div>
 	
+	<jsp:doBody/>
+
+    
 	<!-- JQuery -->
 	<script src="startbootstrap-sb-admin-2-gh-pages/vendor/jquery/jquery.min.js"></script>
 	<!-- Bootstrap Core Java Script -->
 	<script src="startbootstrap-sb-admin-2-gh-pages/vendor/bootstrap/js/bootstrap.min.js"></script>	
 	<!-- Metis Menu Plugin Javascript -->	
 	<script src="startbootstrap-sb-admin-2-gh-pages/vendor/metisMenu/metisMenu.min.js"></script>	
+
 	
 </body>
 </html>
