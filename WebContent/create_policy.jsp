@@ -15,7 +15,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">Dashboard</a>
+                    <a href="#">Dashboar</a>
                 </li>
                 <li>
                     <a href="#">Shortcuts</a>
