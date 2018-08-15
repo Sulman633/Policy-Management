@@ -29,14 +29,11 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
-<<<<<<< HEAD
     
 <dependency>
     <groupId>org.apache.tomcat</groupId>
     <artifactId>tomcat-servlet-api</artifactId>
     <version>8.0.15</version>
 </dependency>
-=======
->>>>>>> 45c8b6f0f0a22076dcfd108f92115ed5a5d0962f
   </dependencies>
 </project>
