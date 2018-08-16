@@ -43,10 +43,10 @@
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
-                <form>
+                <form method="post" action="Servlet">
 				  <div class="form-group">
 				    <label for="PolicyName">Policy Name:</label>
-				    <input type="text" class="form-control" id="PolicyName" placeholder="Policy Name">
+				    <input type="text" class="form-control" id="PolicyName" name="PolicyName" placeholder="Policy Name">
 				  </div>
 				  <div class="form-group">
 				    <label for="NumberNominees">Number of Nominees Required:</label>
@@ -67,12 +67,13 @@
 					</div>
 					<div class="form-group">
 					    <label for="SunmAssured">Sum Assured (1 lakh to 50 lakh):</label>
-					    <input type="number" min="1" max="50" class="form-control" id="SumAssured" placeholder="1">
+					    <input type="number" min="1" max="50" class="form-control" id="SumAssured" name="SumAssured" placeholder="1">
 					</div>
 				  <div class="form-group">
 				    <label for="Prerequisites">Pre-requisites:</label>
 				    <textarea class="form-control" id="Prerequisites" rows="3"></textarea>
 				  </div>
+				  <input type="submit" value="Submit">
 				</form>
                 
             </div>
