@@ -7,26 +7,20 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">                
-                <!-- Success/Error alerts -->
-                <div id="success" class="alert alert-success" hidden>
-				  Successfully created policy!
-				</div>
-				<div id="error" class="alert alert-danger" hidden>
-				  Error in creating policy.
-				</div>
+               
 				
 				<form id="createPolicy">
 				  <div class="form-group">
 				    <label for="PolicyName">Policy Name:</label>
-				    <input type="text" class="form-control" id="PolicyName" placeholder="Policy Name" required>
+				    <input type="text" class="form-control" id="PolicyName" name="Pname" placeholder="Policy Name" required>
 				  </div>			  
 				  <div class="form-group">
 				    <label for="NumberNominees">Number of Nominees Required:</label>
-				    <input type="number" min="1" max="10" class="form-control" step="1" id="NumberNominees" pattern="\d+" required>
+				    <input type="number" min="1" max="10" class="form-control" name="Nominees" step="1" id="NumberNominees" pattern="\d+" required>
 				  </div>	  
 				  
 				    <div class="form-check form-check-inline">
-				  	  <label for="Tenure">Type:</label></br>
+				  	  <label for="Tenure">Type of Policy:</label></br>
 					  <input class="form-check-input" type="radio" name="typeRadio" id="type1" value="Accidental" checked="checked">
 					  <label class="form-check-label" for="inlineRadio1">Accidental</label>
 					</div>
@@ -57,14 +51,27 @@
 					</div>
 					<div class="form-group">
 					    <label for="SumAssured">Sum Assured (1 lakh to 50 lakh):</label>
-					    <input type="number" min="1" max="50" class="form-control" id="SumAssured" step="0.01" required>
+					    <input type="number" min="1" max="50" class="form-control" name="SumAssured" id="SumAssured" step="0.01" required>
 					</div>
 				  <div class="form-group">
 				    <label for="Prerequisites">Pre-requisites:</label>
-				    <textarea class="form-control" id="Prerequisites" rows="3"></textarea>
+				    <textarea class="form-control" name="Prereq" id="Prerequisites" rows="3"></textarea>
 				  </div>
 				  <button type="submit" class="btn btn-primary">Submit</button>
 				</form>
+				 <!-- Success/Error alerts -->
+                <div id="success" class="alert alert-success alert-dismissible" role="alert" hidden>
+				  Successfully created policy!
+				  	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    					<span aria-hidden="true">&times;</span>
+ 					</button>
+				</div>
+				<div id="error" class="alert alert-danger alert-dismissible" role="alert" hidden>
+				  Error in creating policy.
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					    <span aria-hidden="true">&times;</span>
+				  </button>
+				</div>
             </div>
         </div>
         <!-- /#page-content-wrapper -->
@@ -72,12 +79,28 @@
 
 <script>
 	// Logic on submit button must be implemented later!!!
+	
+	
 	$(document).ready(function(){
 	    $("#createPolicy").submit(function(e){
+	    	
 	    	e.preventDefault();
-	        $("#success").removeAttr("hidden");
-	        $("#error").attr("hidden","hidden");
-	
+	    	
+	    	$.ajax(
+	                {
+	                    type: "get",
+	                    url: "/PolicyManagement/Servlet", //Your full URL goes here
+	                  	data: $("#createPolicy").serialize(),
+	                  	
+	                    success: function(data, textStatus, jqXHR){
+	                    	$("#success").removeAttr("hidden");
+	                    	$("#error").attr("hidden","hidden");             
+	                    },
+	                    error: function(jqXHR){
+	                    	
+	                    	 	                    }
+	                });
+
 	    });
 	});
 </script>
