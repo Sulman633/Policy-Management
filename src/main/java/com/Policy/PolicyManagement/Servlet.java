@@ -31,7 +31,7 @@ public class Servlet extends HttpServlet {
 		String typePolicy = request.getParameter("typeRadio");
 		String tenure = request.getParameter("tenureRadio");
 		String sumAssured = request.getParameter("SumAssured");
-		String prereq = request.getParameter("Prereq");
+		String prereq = request.getParameter("Prerequisites");
 		
 		System.out.println(policyName);
 		System.out.println(nominees);

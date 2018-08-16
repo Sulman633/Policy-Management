@@ -12,6 +12,7 @@
 				<form id="createPolicy">
 				  <div class="form-group">
 				    <label for="PolicyName">Policy Name:</label>
+
 				    <input type="text" class="form-control" id="PolicyName" name="Pname" placeholder="Policy Name" required>
 				  </div>			  
 				  <div class="form-group">
@@ -21,6 +22,7 @@
 				  
 				    <div class="form-check form-check-inline">
 				  	  <label for="Tenure">Type of Policy:</label></br>
+
 					  <input class="form-check-input" type="radio" name="typeRadio" id="type1" value="Accidental" checked="checked">
 					  <label class="form-check-label" for="inlineRadio1">Accidental</label>
 					</div>
@@ -51,11 +53,13 @@
 					</div>
 					<div class="form-group">
 					    <label for="SumAssured">Sum Assured (1 lakh to 50 lakh):</label>
-					    <input type="number" min="1" max="50" class="form-control" name="SumAssured" id="SumAssured" step="0.01" required>
+
+					    <input type="number" min="1" max="50" class="form-control" id="SumAssured" name="SumAssured" step="0.01" required>
 					</div>
 				  <div class="form-group">
 				    <label for="Prerequisites">Pre-requisites:</label>
-				    <textarea class="form-control" name="Prereq" id="Prerequisites" rows="3"></textarea>
+				    <textarea class="form-control" id="Prerequisites" name="Prerequisites" rows="3"></textarea>
+
 				  </div>
 				  <button type="submit" class="btn btn-primary">Submit</button>
 				</form>
