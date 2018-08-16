@@ -94,7 +94,19 @@
 					</li>
 		         <%} else if(typeOfUser == "customer") {%>
 		         
-		         <%} else {%>			         
+		         <%} else {%>	
+		            <li class="sidebar-brand">
+						 Admin Portal
+					</li>
+					<li>
+		                <a href="/PolicyManagement/create_policy.jsp">Create Policy</a>					
+					</li>
+					<li>
+		                <a href="/PolicyManagement/update_policy.jsp">Update Policy</a>					
+					</li>
+					<li>
+		                <a href="/PolicyManagement/create_policy.jsp">DeletePolicy</a>					
+					</li>		         
 		         <%}%>		         
 	        </ul>
 	    </div>
