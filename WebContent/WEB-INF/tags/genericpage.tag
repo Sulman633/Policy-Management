@@ -31,7 +31,7 @@
 		<nav class="navbar navbar-default navbar-static-top" role="navigation">
 			<!-- navbar header Created by: Khalid-->
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">Fast Track Claim And Policy Service</a> 
+				<a class="navbar-brand" href="index.jsp">Fast Track Claim And Policy Service</a> 
 			</div>
 			
 			<!-- navbar toplinks Created by: Khalid-->
