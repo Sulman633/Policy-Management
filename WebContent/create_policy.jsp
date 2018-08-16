@@ -22,7 +22,7 @@
 				  </div>			  
 				  <div class="form-group">
 				    <label for="NumberNominees">Number of Nominees Required:</label>
-				    <input type="number" min="1" max="10" class="form-control" step="1" id="NumberNominees" placeholder="1" pattern="\d+" required>
+				    <input type="number" min="1" max="10" class="form-control" step="1" id="NumberNominees" pattern="\d+" required>
 				  </div>	  
 				  
 				    <div class="form-check form-check-inline">
@@ -56,8 +56,8 @@
 					  <label class="form-check-label" for="inlineRadio3">Annually</label>
 					</div>
 					<div class="form-group">
-					    <label for="SunmAssured">Sum Assured (1 lakh to 50 lakh):</label>
-					    <input type="number" min="1" max="50" class="form-control" id="SumAssured" step="0.01" placeholder="1" required>
+					    <label for="SumAssured">Sum Assured (1 lakh to 50 lakh):</label>
+					    <input type="number" min="1" max="50" class="form-control" id="SumAssured" step="0.01" required>
 					</div>
 				  <div class="form-group">
 				    <label for="Prerequisites">Pre-requisites:</label>
@@ -68,8 +68,9 @@
             </div>
         </div>
         <!-- /#page-content-wrapper -->
+</t:genericpage>
 
-    <script>
+<script>
 	// Logic on submit button must be implemented later!!!
 	$(document).ready(function(){
 	    $("#createPolicy").submit(function(e){
@@ -79,5 +80,4 @@
 	
 	    });
 	});
-    </script>
-</t:genericpage>
+</script>
