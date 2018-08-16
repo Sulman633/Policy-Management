@@ -22,6 +22,8 @@
 
 <!-- Custom Fonts -->
 <link rel="stylesheet" href="startbootstrap-sb-admin-2-gh-pages/vendor/font-awesome/css/font-awesome.min.css"/>
+
+<link href="/PolicyManagement/sidebar.css" rel="stylesheet">
 <title>Fast Track Policy & Claims Service</title>
 </head>
 <body>
@@ -69,6 +71,42 @@
 		</nav>
 	</div>
 	
+ 	<div id="wrapper">
+    	<a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
+	
+	    <!-- Sidebar -->
+	    <div id="sidebar-wrapper">
+	        <ul class="sidebar-nav">
+	            <li class="sidebar-brand">
+	                <a href="#">
+	                    Start Bootstrap
+	                </a>
+	            </li>
+	            <li>
+	                <a href="#">Dashboard</a>
+	            </li>
+	            <li>
+	                <a href="#">Shortcuts</a>
+	            </li>
+	            <li>
+	                <a href="#">Overview</a>
+	            </li>
+	            <li>
+	                <a href="#">Events</a>
+	            </li>
+	            <li>
+	                <a href="#">About</a>
+	            </li>
+	            <li>
+	                <a href="#">Services</a>
+	            </li>
+	            <li>
+	                <a href="#">Contact</a>
+	            </li>
+	        </ul>
+	    </div>
+	</div>
+    <!-- /#sidebar-wrapper -->
 	<jsp:doBody/>
 
     
@@ -78,7 +116,15 @@
 	<script src="startbootstrap-sb-admin-2-gh-pages/vendor/bootstrap/js/bootstrap.min.js"></script>	
 	<!-- Metis Menu Plugin Javascript -->	
 	<script src="startbootstrap-sb-admin-2-gh-pages/vendor/metisMenu/metisMenu.min.js"></script>	
-
 	
+	<script>
+	$(document).ready(function(){
+	    $("#menu-toggle").click(function(e) {
+	        e.preventDefault();
+	        $("#wrapper").toggleClass("toggled");
+	    });
+	    
+	});  
+	</script>	
 </body>
 </html>
