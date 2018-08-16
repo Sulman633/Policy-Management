@@ -43,7 +43,16 @@
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
-                <form>
+                
+                <!-- Success/Error alerts -->
+                <div id="success" class="alert alert-success" hidden>
+				  Successfully created policy!
+				</div>
+				<div id="error" class="alert alert-danger" hidden>
+				  Error in creating policy.
+				</div>
+				
+				<form id="createPolicy">
 				  <div class="form-group">
 				    <label for="PolicyName">Policy Name:</label>
 				    <input type="text" class="form-control" id="PolicyName" placeholder="Policy Name" required>
@@ -96,7 +105,6 @@
             </div>
         </div>
         <!-- /#page-content-wrapper -->
-
     </div>
     <!-- /#wrapper -->
     
@@ -106,8 +114,23 @@
 </t:genericpage>
 
  <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
+   
+
+    $(document).ready(function(){
+    	// Logic on submit button must be implemented later!!!
+        $("#createPolicy").submit(function(e){
+        	e.preventDefault();
+            $("#success").removeAttr("hidden");
+            $("#error").attr("hidden","hidden");
+
+        });
+        
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+        
     });
+      
 </script>
+

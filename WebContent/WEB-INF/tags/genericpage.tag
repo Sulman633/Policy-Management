@@ -2,7 +2,7 @@
 <%@attribute name="header" fragment="true" %>
 <%@attribute name="footer" fragment="true" %>
 <%@attribute name="userType" required="true"%>
-<%@attribute name="sidebar_admin" fragment="true"%>
+
 
 <html>
 <head>
@@ -22,10 +22,6 @@
 
 <!-- Custom Fonts -->
 <link rel="stylesheet" href="startbootstrap-sb-admin-2-gh-pages/vendor/font-awesome/css/font-awesome.min.css"/>
-
-<!-- Custom CSS -->
-<link href="/PolicyManagement/sidebar.css" rel="stylesheet">
-
 <title>Fast Track Policy & Claims Service</title>
 </head>
 <body>
@@ -72,34 +68,9 @@
 			</ul>
 		</nav>
 	</div>
+	
+	<jsp:doBody/>
 
-	 <div id="wrapper">
-	        <!-- Sidebar -->
-	        <div id="sidebar-wrapper">
-				<ul class="sidebar-nav">
-				    <li class="sidebar-brand">
-				        <a href="#">
-				            Menu
-				        </a>
-				    </li>
-					<jsp:invoke fragment="sidebar_admin"/>	
-				</ul>
-			</div>
-	       <!-- /#sidebar-wrapper -->
-	
-	        <!-- Page Content -->
-	        <div id="page-content-wrapper">
-	            <div class="container-fluid">
-	                <h1>Simple Sidebar</h1>
-	                <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-	                <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
-	                <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
-	            </div>
-	        </div>
-	        <!-- /#page-content-wrapper -->
-	
-	</div>
-    <!-- /#wrapper -->
     
 	<!-- JQuery -->
 	<script src="startbootstrap-sb-admin-2-gh-pages/vendor/jquery/jquery.min.js"></script>
@@ -108,12 +79,6 @@
 	<!-- Metis Menu Plugin Javascript -->	
 	<script src="startbootstrap-sb-admin-2-gh-pages/vendor/metisMenu/metisMenu.min.js"></script>	
 
-	<script>
-	    $("#menu-toggle").click(function(e) {
-	        e.preventDefault();
-	        $("#wrapper").toggleClass("toggled");
-	    });
-	</script>
 	
 </body>
 </html>
