@@ -4,8 +4,6 @@
 <link href="/PolicyManagement/sidebar.css" rel="stylesheet">
 
 <t:genericpage userType="Admin">   
-
-
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">                

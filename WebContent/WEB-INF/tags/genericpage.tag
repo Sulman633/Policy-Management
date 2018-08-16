@@ -77,32 +77,25 @@
 	    <!-- Sidebar -->
 	    <div id="sidebar-wrapper">
 	        <ul class="sidebar-nav">
-	            <li class="sidebar-brand">
-	                <a href="#">
-	                    Start Bootstrap
-	                </a>
-	            </li>
-	            <li>
-	                <a href="#">Dashboard</a>
-	            </li>
-	            <li>
-	                <a href="#">Shortcuts</a>
-	            </li>
-	            <li>
-	                <a href="#">Overview</a>
-	            </li>
-	            <li>
-	                <a href="#">Events</a>
-	            </li>
-	            <li>
-	                <a href="#">About</a>
-	            </li>
-	            <li>
-	                <a href="#">Services</a>
-	            </li>
-	            <li>
-	                <a href="#">Contact</a>
-	            </li>
+	        	<%
+        		String typeOfUser = (String)session.getAttribute("userType");
+        		if(typeOfUser == "admin"){%>
+		            <li class="sidebar-brand">
+						 Admin Portal
+					</li>
+					<li>
+		                <a href="/PolicyManagement/create_policy.jsp">Create Policy</a>					
+					</li>
+					<li>
+		                <a href="/PolicyManagement/update_policy.jsp">Update Policy</a>					
+					</li>
+					<li>
+		                <a href="/PolicyManagement/create_policy.jsp">DeletePolicy</a>					
+					</li>
+		         <%} else if(typeOfUser == "customer") {%>
+		         
+		         <%} else {%>			         
+		         <%}%>		         
 	        </ul>
 	    </div>
 	</div>
