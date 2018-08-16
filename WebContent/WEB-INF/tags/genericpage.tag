@@ -93,7 +93,6 @@
 		                <a href="/PolicyManagement/create_policy.jsp">DeletePolicy</a>					
 					</li>
 		         <%} else if(typeOfUser == "customer") {%>
-		         
 		         <%} else {%>	
 		            <li class="sidebar-brand">
 						 Admin Portal
@@ -110,10 +109,8 @@
 		         <%}%>		         
 	        </ul>
 	    </div>
+	    <jsp:doBody/>
 	</div>
-    <!-- /#sidebar-wrapper -->
-	<jsp:doBody/>
-
     
 	<!-- JQuery -->
 	<script src="startbootstrap-sb-admin-2-gh-pages/vendor/jquery/jquery.min.js"></script>
