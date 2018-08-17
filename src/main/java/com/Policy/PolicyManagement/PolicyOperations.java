@@ -57,6 +57,7 @@ public class PolicyOperations {
 		}
     }
 	
+<<<<<<< HEAD
 	
 	
 	public void updatePolicy(String policyType, String policyName, int numberOfNominees, int tenure, int sumAssured, String prerequisites) throws SQLException {
@@ -70,14 +71,30 @@ public class PolicyOperations {
 			pstmt.setInt(4, tenure);
 			pstmt.setInt(5, sumAssured);
 			pstmt.setString(6, prerequisites);
+=======
+	public void deletePolicy(String pname) throws SQLException
+    {
+		try {
+			con.connect();
+			pstmt = con.getCon().prepareStatement("DELETE FROM POLICIES WHERE POLICY_NAME='?'");
+			pstmt.setString(1, pname);
+			pstmt.executeQuery();
+	        System.out.println("executed query"); 
+>>>>>>> d48eb8da78e38103544038ada482105fee35068c
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}finally {
 			pstmt.close();
 			con.closeConnection();
 		}
+<<<<<<< HEAD
 		
 	}
+=======
+    }
+	
+	
+>>>>>>> d48eb8da78e38103544038ada482105fee35068c
 	
 	
 }

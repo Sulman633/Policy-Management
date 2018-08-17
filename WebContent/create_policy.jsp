@@ -13,11 +13,11 @@
 				  <div class="form-group">
 				    <label for="PolicyName">Policy Name:</label>
 
-				    <input type="text" class="form-control" id="PolicyName" name="Pname" placeholder="Policy Name" required>
+				    <input type="text" class="form-control" id="PolicyName" name="Policyname" placeholder="Policy Name" required>
 				  </div>			  
 				  <div class="form-group">
 				    <label for="NumberNominees">Number of Nominees Required:</label>
-				    <input type="number" min="1" max="10" class="form-control" name="Nominees" step="1" id="NumberNominees" pattern="\d+" required>
+				    <input type="number" min="1" max="10" class="form-control" name="Nominees" step="1" id="Numbernominees" pattern="\d+" required>
 				  </div>	  
 				  
 				    <div class="form-check form-check-inline">
@@ -40,29 +40,34 @@
 					</div>			  
 				    <div class="form-check form-check-inline">
 				  	  <label for="Tenure">Tenure:</label></br>
-					  <input class="form-check-input" type="radio" name="tenureRadio" id="tenure1" value="Quarterly" checked="checked">
+					  <input class="form-check-input" type="radio" name="tenureRadio" id="tenure1" value="4" checked="checked">
 					  <label class="form-check-label" for="inlineRadio1">Quarterly</label>
 					</div>
 					<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="radio" name="tenureRadio" id="tenure2" value="Halfway">
+					  <input class="form-check-input" type="radio" name="tenureRadio" id="tenure2" value="2">
 					  <label class="form-check-label" for="inlineRadio2">Halfway</label>
 					</div>
 					<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="radio" name="tenureRadio" id="tenure3" value="Annually">
+					  <input class="form-check-input" type="radio" name="tenureRadio" id="tenure3" value="1">
 					  <label class="form-check-label" for="inlineRadio3">Annually</label>
 					</div>
 					<div class="form-group">
 					    <label for="SumAssured">Sum Assured (1 lakh to 50 lakh):</label>
 
-					    <input type="number" min="1" max="50" class="form-control" id="SumAssured" name="SumAssured" step="0.01" required>
+					    <input type="number" min="1" max="50" class="form-control" id="SumAssured" name="Sumassured" step="0.01" required>
 					</div>
 				  <div class="form-group">
 				    <label for="Prerequisites">Pre-requisites:</label>
-				    <textarea class="form-control" id="Prerequisites" name="Prerequisites" rows="3"></textarea>
-
+				    <textarea class="form-control" id="Prerequisites" name="Prerequ" rows="3"></textarea>
 				  </div>
+<<<<<<< HEAD
 				  <button type="submit" name="createSubmit" class="btn btn-primary">Submit</button>
+=======
+				  <button type="submit" class="btn btn-primary">Submit</button>
+				  <input type="hidden" name="formName" value="createPolicy">
+>>>>>>> d48eb8da78e38103544038ada482105fee35068c
 				</form>
+				
 				 <!-- Success/Error alerts -->
                 <div id="success" class="alert alert-success alert-dismissible" role="alert" hidden>
 				  Successfully created policy!
@@ -101,9 +106,15 @@
 	                    	$("#error").attr("hidden","hidden");             
 	                    },
 	                    error: function(jqXHR){
+<<<<<<< HEAD
 	                    	
 	                }
 	        });
+=======
+	                   	
+	                    	 	                    }
+	                });
+>>>>>>> d48eb8da78e38103544038ada482105fee35068c
 
 	    });
 	});
