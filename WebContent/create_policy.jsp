@@ -61,7 +61,7 @@
 				    <textarea class="form-control" id="Prerequisites" name="Prerequisites" rows="3"></textarea>
 
 				  </div>
-				  <button type="submit" class="btn btn-primary">Submit</button>
+				  <button type="submit" name="createSubmit" class="btn btn-primary">Submit</button>
 				</form>
 				 <!-- Success/Error alerts -->
                 <div id="success" class="alert alert-success alert-dismissible" role="alert" hidden>
@@ -102,8 +102,8 @@
 	                    },
 	                    error: function(jqXHR){
 	                    	
-	                    	 	                    }
-	                });
+	                }
+	        });
 
 	    });
 	});
