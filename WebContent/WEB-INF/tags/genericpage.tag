@@ -93,7 +93,7 @@
 		                <a href="/PolicyManagement/update_policy.jsp">Update Policy</a>					
 					</li>
 					<li>
-		                <a href="/PolicyManagement/create_policy.jsp">DeletePolicy</a>					
+		                <a href="/PolicyManagement/delete_policy.jsp">DeletePolicy</a>					
 					</li>
 		         <%} else if(typeOfUser == "customer") {%>
 		         <%} else {%>	
