@@ -101,7 +101,7 @@
 						 Admin Portal
 					</li>
 					<li>
-		                <a href="/PolicyManagement/create_policy.jsp">Buy Policy</a>					
+		                <a href="/PolicyManagement/buy_policy.jsp">Buy Policy</a>					
 					</li>
 					<li>
 		                <a href="/PolicyManagement/create_policy.jsp">Create Policy</a>					
