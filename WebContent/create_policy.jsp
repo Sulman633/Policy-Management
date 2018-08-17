@@ -59,10 +59,11 @@
 				  <div class="form-group">
 				    <label for="Prerequisites">Pre-requisites:</label>
 				    <textarea class="form-control" id="Prerequisites" name="Prerequ" rows="3"></textarea>
-
 				  </div>
 				  <button type="submit" class="btn btn-primary">Submit</button>
+				  <input type="hidden" name="formName" value="createPolicy">
 				</form>
+				
 				 <!-- Success/Error alerts -->
                 <div id="success" class="alert alert-success alert-dismissible" role="alert" hidden>
 				  Successfully created policy!
