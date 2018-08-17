@@ -55,14 +55,14 @@ public class PolicyOperations {
 			pstmt.close();
 			con.closeConnection();
 		}
-    }
-	
-<<<<<<< HEAD
-	
+    }	
 	
 	public void updatePolicy(String policyType, String policyName, int numberOfNominees, int tenure, int sumAssured, String prerequisites) throws SQLException {
-		try {
-			con.connect();
+			try {
+				con.connect();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
 			pstmt = con.getCon().prepareStatement("UPDATE INTO POLICIES(policy_type, policy_name, number_nominees, tenure, sum_assured, pre_reqs)"
 					+ "VALUES(?,?,?,?,?,?)");
 			pstmt.setString(1, policyType);
@@ -70,8 +70,9 @@ public class PolicyOperations {
 			pstmt.setInt(3, numberOfNominees);
 			pstmt.setInt(4, tenure);
 			pstmt.setInt(5, sumAssured);
-			pstmt.setString(6, prerequisites);
-=======
+			pstmt.setString(6, prerequisites);			
+	}
+	
 	public void deletePolicy(String pname) throws SQLException
     {
 		try {
@@ -80,21 +81,11 @@ public class PolicyOperations {
 			pstmt.setString(1, pname);
 			pstmt.executeQuery();
 	        System.out.println("executed query"); 
->>>>>>> d48eb8da78e38103544038ada482105fee35068c
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}finally {
 			pstmt.close();
 			con.closeConnection();
 		}
-<<<<<<< HEAD
-		
-	}
-=======
     }
-	
-	
->>>>>>> d48eb8da78e38103544038ada482105fee35068c
-	
-	
 }
