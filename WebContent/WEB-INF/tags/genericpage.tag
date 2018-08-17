@@ -80,8 +80,11 @@
 	        	<%
         		String typeOfUser = (String)session.getAttribute("userType");
         		if(typeOfUser == "admin"){%>
-		            <li class="sidebar-brand">
+		            <li class="sidebar-brand" style="color:white">
 						 Admin Portal
+					</li>
+					<li>
+		                <a href="/PolicyManagement/buy_policy.jsp">Buy Policy</a>					
 					</li>
 					<li>
 		                <a href="/PolicyManagement/create_policy.jsp">Create Policy</a>					
@@ -94,8 +97,11 @@
 					</li>
 		         <%} else if(typeOfUser == "customer") {%>
 		         <%} else {%>	
-		            <li class="sidebar-brand">
+		            <li class="sidebar-brand" style="color:white">
 						 Admin Portal
+					</li>
+					<li>
+		                <a href="/PolicyManagement/create_policy.jsp">Buy Policy</a>					
 					</li>
 					<li>
 		                <a href="/PolicyManagement/create_policy.jsp">Create Policy</a>					
