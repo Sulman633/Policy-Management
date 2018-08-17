@@ -3,7 +3,6 @@ package com.Policy.PolicyManagement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class PolicyOperations {
 
@@ -37,8 +36,8 @@ public class PolicyOperations {
     {
 		try {
 			con.connect();
-			pstmt = con.getCon().prepareStatement("INSERT INTO POLCIES(policy_type, policy_name, number_nominees, tenure, sum_assured, pre_reqs)"
-	                + "VALUES(?,?,?,?,?,?)");
+			pstmt = con.getCon().prepareStatement("INSERT INTO POLICIES(policy_id, policy_type, policy_name, number_nominees, tenure, sum_assured, pre_reqs)"
+	                + "VALUES(policy_seq.nextval,?,?,?,?,?,?)");
 			pstmt.setString(1, ptype);
 			pstmt.setString(2, pname);
 			pstmt.setInt(3, nNom);
