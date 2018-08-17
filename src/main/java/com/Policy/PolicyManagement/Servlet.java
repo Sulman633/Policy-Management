@@ -26,19 +26,8 @@ public class Servlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String policyName = request.getParameter("Pname");
-		String nominees = request.getParameter("Nominees");
-		String typePolicy = request.getParameter("typeRadio");
-		String tenure = request.getParameter("tenureRadio");
-		String sumAssured = request.getParameter("SumAssured");
-		String prereq = request.getParameter("Prerequisites");
-		
-		System.out.println(policyName);
-		System.out.println(nominees);
-		System.out.println(typePolicy);
-		System.out.println(tenure);
-		System.out.println(sumAssured);
-		System.out.println(prereq);
+
+	
 		
 	}
 
