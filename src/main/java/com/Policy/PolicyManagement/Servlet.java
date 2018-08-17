@@ -63,13 +63,6 @@ public class Servlet extends HttpServlet {
 		
 		//Create object to run policy operations
 		PolicyOperations p = new PolicyOperations();
-		
-		try {
-			//Print Query for all policy names
-			p.getAllPolicyNames();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
 
 	/**
