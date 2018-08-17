@@ -1,6 +1,8 @@
 package com.Policy.PolicyManagement;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,6 +42,15 @@ public class Servlet extends HttpServlet {
 		System.out.println(sumAssured);
 		System.out.println(prereq);
 		
+		//Create object to run policy operations
+		PolicyOperations p = new PolicyOperations();
+		
+		try {
+			//Print Query for all policy names
+			p.getAllPolicyNames();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
