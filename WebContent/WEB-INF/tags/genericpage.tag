@@ -31,7 +31,7 @@
 		<nav class="navbar navbar-default navbar-static-top" role="navigation">
 			<!-- navbar header Created by: Khalid-->
 			<div class="navbar-header">
-				<a class="navbar-brand" href="index.jsp">Fast Track Claim And Policy Service</a> 
+				<a class="navbar-brand" href="index.jsp">Fast Track Claim And Policy Service <%= userType %></a> 
 			</div>
 			
 			<!-- navbar toplinks Created by: Khalid-->
@@ -76,44 +76,69 @@
 	
 	    <!-- Sidebar -->
 	    <div id="sidebar-wrapper">
-	        <ul class="sidebar-nav">
 	        	<%
         		String typeOfUser = (String)session.getAttribute("userType");
-        		if(typeOfUser == "admin"){%>
-		            <li class="sidebar-brand" style="color:white">
-						 Admin Portal
-					</li>
-					<li>
-		                <a href="/PolicyManagement/buy_policy.jsp">Buy Policy</a>					
-					</li>
-					<li>
-		                <a href="/PolicyManagement/create_policy.jsp">Create Policy</a>					
-					</li>
-					<li>
-		                <a href="/PolicyManagement/update_policy.jsp">Update Policy</a>					
-					</li>
-					<li>
-		                <a href="/PolicyManagement/delete_policy.jsp">Delete Policy</a>					
-					</li>
-		         <%} else if(typeOfUser == "customer") {%>
-		         <%} else {%>	
-		            <li class="sidebar-brand" style="color:white">
-						 Admin Portal
-					</li>
-					<li>
-		                <a href="/PolicyManagement/buy_policy.jsp">Buy Policy</a>					
-					</li>
-					<li>
-		                <a href="/PolicyManagement/create_policy.jsp">Create Policy</a>					
-					</li>
-					<li>
-		                <a href="/PolicyManagement/update_policy.jsp">Update Policy</a>					
-					</li>
-					<li>
-		                <a href="/PolicyManagement/delete_policy.jsp">Delete Policy</a>					
-					</li>		         
+	        	
+        		if(userType =="none"){%>
+        			 <ul class="sidebar-nav">
+			            <li class="sidebar-brand" style="color:white">
+							 None
+					</ul>  
+		         <%} else if(userType == "admin") {%>
+	        		<ul class="sidebar-nav">
+			            <li class="sidebar-brand" style="color:white">
+							 Admin Portal
+						</li>
+						<li>
+			                <a href="/PolicyManagement/buy_policy.jsp">Buy Policy</a>					
+						</li>
+						<li>
+			                <a href="/PolicyManagement/create_policy.jsp">Create Policy</a>					
+						</li>
+						<li>
+			                <a href="/PolicyManagement/update_policy.jsp">Update Policy</a>					
+						</li>
+						<li>
+			                <a href="/PolicyManagement/delete_policy.jsp">Delete Policy</a>					
+						</li>
+					</ul>	
+		         <%} else if(userType == "manager") {%>
+	        		<ul class="sidebar-nav">
+			            <li class="sidebar-brand" style="color:white">
+							 Manager Portal
+						</li>
+						<li>
+			                <a href="/PolicyManagement/buy_policy.jsp">Buy Policy</a>					
+						</li>
+						<li>
+			                <a href="/PolicyManagement/create_policy.jsp">Create Policy</a>					
+						</li>
+						<li>
+			                <a href="/PolicyManagement/update_policy.jsp">Update Policy</a>					
+						</li>
+						<li>
+			                <a href="/PolicyManagement/delete_policy.jsp">Delete Policy</a>					
+						</li>
+					</ul>		         
+		         <%} else if(userType == "customer"){%>
+		            <ul class="sidebar-nav">
+			            <li class="sidebar-brand" style="color:white">
+							 Customer Portal
+						</li>
+						<li>
+			                <a href="/PolicyManagement/buy_policy.jsp">Buy Policy</a>					
+						</li>
+						<li>
+			                <a href="/PolicyManagement/create_policy.jsp">Create Policy</a>					
+						</li>
+						<li>
+			                <a href="/PolicyManagement/update_policy.jsp">Update Policy</a>					
+						</li>
+						<li>
+			                <a href="/PolicyManagement/delete_policy.jsp">Delete Policy</a>					
+						</li>
+					</ul>     
 		         <%}%>		         
-	        </ul>
 	    </div>
 	    <div id = "show" class = "show"></div>
 	    <jsp:doBody/>
@@ -152,7 +177,6 @@ $.ajax({
     	function show(data){
     		
     		return   "<h2 style = 'font-size:40px; font-weight: bold;'>Current Weather for " + data.name + ", " + data.sys.country+"</h2>"+
-    	     "<h2 style = 'font-size:10px; font-weight: bold;'>Current Weather for " + data.name + ", " + data.sys.country+"</h2>"+
     	    "<h3 ><strong>Weather</strong>: "+data.weather[0].main + "   " +"<strong>Temperature</strong>: "+data.main.temp + " "+ "Celsius"+
     	      "   " +"<strong>Humidity</strong>: "+data.main.humidity + "   " + "<strong>Wind Speed</strong>: "+data.wind.speed +"</h3>"
               
@@ -160,6 +184,7 @@ $.ajax({
     });
 	      
 	</script>
+	
 	<style>
 .show{
    position: relative;
