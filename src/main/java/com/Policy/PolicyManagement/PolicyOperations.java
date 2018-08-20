@@ -41,7 +41,7 @@ public class PolicyOperations {
 		try {
 			con.connect();
 			pstmt = con.getCon().prepareStatement("INSERT INTO POLICIES(policy_id, policy_type, policy_name, number_nominees, tenure, sum_assured, pre_reqs)"
-	                + "VALUES(policy_seq.nextval,?,?,?,?,?,?)");
+                    + "VALUES(policy_seq.nextval,?,?,?,?,?,?)");
 			pstmt.setString(1, ptype);
 			pstmt.setString(2, pname);
 			pstmt.setInt(3, nNom);
@@ -78,10 +78,12 @@ public class PolicyOperations {
     {
 		try {
 			Connection dbcon = con.connect();
+			System.out.println("89809");
 			pstmt = dbcon.prepareStatement("DELETE FROM POLICIES WHERE POLICY_NAME=?");
-			
+			System.out.println("6786");
 			pstmt.setString(1, p_name);
 			pstmt.execute();
+			System.out.println("deleted policy");
 			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

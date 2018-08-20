@@ -54,13 +54,14 @@
 					 </c:forEach>
 				    </select>
 				 </div>
-				 <input type="submit"  class="btn btn-danger" name="deletePolicySubmit" value="Delete Policy">
+				 <input type="hidden" name="deletePolicySubmit" value="deletePolicySubmit">
+				 <button type="submit" class="btn btn-danger"> Submit</button>
 			</form>
 		    </div>
 
 			 <!-- Success Notification -->
              <div id="success" class="alert alert-success alert-dismissible" role="alert" hidden>
-			  Successfully created policy!
+			  Successfully deleted policy!
 			  	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
    					<span aria-hidden="true">&times;</span>
 					</button>
@@ -103,17 +104,16 @@
 	                  	data: $("#deletePolicy").serialize(),
 	                  	
 	                    success: function(data, textStatus, jqXHR){
+	                    	alert("hi");
 	            	    	$("#success").removeAttr("hidden");
 	                    },
 	                    error: function(jqXHR){
 	                   	
 	                  	}
 	                });
+ 		});
+	});
 
-	   
- 		
-		
-	
 </script>
 
 

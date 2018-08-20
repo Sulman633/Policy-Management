@@ -35,11 +35,13 @@ public class MainServlet extends HttpServlet {
 		
 		PolicyOperations p = new PolicyOperations();
 		
+		System.out.println(request.getParameter("policyName"));
 		//delete policy logic
 		if(request.getParameter("deletePolicySubmit") != null)
 		{
 			try
 			{
+				System.out.println("in delete");
 							
 				p.deletePolicy(request.getParameter("policyName"));
 				
@@ -49,6 +51,69 @@ public class MainServlet extends HttpServlet {
 			{
 				
 			}
+		}
+		
+		if(request.getParameter("createPolicySubmit") != null)
+		{
+			
+	        String pName = request.getParameter("Policyname");
+	        System.out.println(pName);
+	        String ptype = request.getParameter("typeRadio");
+	        System.out.println(ptype);
+	        String nNominees = request.getParameter("Numbernominees");
+	        int nNom = Integer.parseInt(nNominees);
+	        System.out.println(nNom);
+	        String tPeriod = request.getParameter("tenureRadio");
+	        int tPer = Integer.parseInt(tPeriod);
+	        System.out.println(tPer);
+	        String sumAss = request.getParameter("Sumassured");
+	        int sumA = Integer.parseInt(sumAss);
+	        System.out.println(sumA);
+	        String prereq = request.getParameter("Prerequ");
+	        //int prer = Integer.parseInt(prereq);
+	        System.out.println(prereq);
+	        Integer num;
+	        num = new Integer(40);
+	        System.out.println(num);
+	    //    String query = "INSERT INTO POLICIES VALUES(policy_seq.nextval,'"+ptype+"','"+pName+"','"+nNom+"','"+tPer+"','"+sumA+"','"+prereq+"')";
+	     
+	        
+	        try {
+	        	
+	        	p.createPolicy(ptype, pName, nNom, tPer, sumA, prereq);
+	        	response.sendRedirect("create_policy.jsp");
+	        	//insertData(ptype, pName, nNom, tPer, sumA, prereq);
+	        } catch (SQLException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        } /*catch (ClassNotFoundException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        }*/
+	    
+	        //private JDBC_Connection con;
+	        //private ResultSet rs;
+	        //private PreparedStatement pst;
+	        
+	          /*      
+	        public void insertData(String ptype, String pname, int nNom, int pten, int sumA, String prereq) throws SQLException, ClassNotFoundException
+	        {
+	            
+	            con.connect();
+	            pst = con.getCon().prepareStatement("INSERT INTO POLICIES(policy_id, policy_type, policy_name, number_nominees, tenure, sum_assured, pre_reqs)"
+	                    + "VALUES(policy_seq.nextval,?,?,?,?,?,?)");
+	            //pst.setInt(1, ID);
+	            pst.setString(1, ptype);
+	            pst.setString(2, pname);
+	            pst.setInt(3, nNom);
+	            pst.setInt(4, pten);
+	            pst.setInt(5, sumA);
+	            pst.setString(6,  prereq);
+	            pst.executeQuery();
+	            System.out.println("executed query");
+	            
+	            
+	        }*/
 		}
 		
 		/*
