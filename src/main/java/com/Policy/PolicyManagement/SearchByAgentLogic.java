@@ -15,7 +15,7 @@ public class SearchByAgentLogic {
 		
 		ResultSet rs =  ps.executeQuery();
 		
-		ArrayList<String> arr = new ArrayList<String>;
+		ArrayList<String> arr = new ArrayList<String>();
 		
 		while(rs.next())
 		{
@@ -34,7 +34,7 @@ public class SearchByAgentLogic {
 		
 		ResultSet rs =  ps.executeQuery();
 		
-		ArrayList<String> arr = new ArrayList<String>;
+		ArrayList<String> arr = new ArrayList<String>();
 		
 		while(rs.next())
 		{

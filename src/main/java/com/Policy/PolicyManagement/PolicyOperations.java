@@ -54,15 +54,20 @@ public class PolicyOperations {
 		}
     }
 	
-	public void deletePolicy(String pname) throws SQLException
+	public void deletePolicy(String p_id) throws SQLException
     {
 		try {
 			con.connect();
-			pstmt = con.getCon().prepareStatement("DELETE FROM POLICIES WHERE POLICY_NAME='?'");
-			pstmt.setString(1, pname);
-			pstmt.executeQuery();
+			
+			pstmt = con.getCon().prepareStatement("DELETE FROM POLICIES WHERE POLICY_ID=?");
+			System.out.println("im here1");
+			pstmt.setString(1, p_id);
+			System.out.println("im here2");
+			pstmt.execute();
+			
 	        System.out.println("executed query"); 
 		} catch (ClassNotFoundException e) {
+			System.out.println("im here3");
 			e.printStackTrace();
 		}finally {
 			pstmt.close();

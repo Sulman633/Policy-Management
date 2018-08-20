@@ -9,7 +9,7 @@
             <div class="container-fluid">                
                
 				
-				<form id="createPolicy">
+				<form id="createPolicy" action = "Servlet">
 				  <div class="form-group">
 				    <label for="PolicyName">Policy Name:</label>
 
@@ -85,7 +85,7 @@
 <script>
 	// Logic on submit button must be implemented later!!!
 	
-	
+	/*
 	$(document).ready(function(){
 	    $("#createPolicy").submit(function(e){
 	    	
@@ -107,5 +107,5 @@
 	                });
 
 	    });
-	});
+	});*/
 </script>

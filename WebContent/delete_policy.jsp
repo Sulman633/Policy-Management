@@ -9,27 +9,27 @@
         <div id="page-content-wrapper">
             <div class="container-fluid">   
             
+            <div id="deletePolicyUI">
+            <h2>Delete Policy</h2>
             
-            <!-- UI 1/2 -->
-            <div id="noPolicyUI">
+            <div id="noPolicyUI" hidden>
 				<h2>No Policies to delete. 
 				Please create a policy before you delete it.</h2>
 		    </div>
-		
-		    <!-- UI 2/2 -->
-            
-            <div id="deletePolicyUI">
-            <h2>Delete Policy</h2>
-			<h3>dynamically update form</h3>
-			<form id="selectPolicyForm">
-				<input list="policies" name="policies">
-				<datalist id="policies">
-					<option value="Policy Name 1">
-					<option value="Policy Name 2">
-					<option value="Policy Name 3">
-					<option value="Policy Name 4">
-				</datalist>
-				<input type="submit" value="Enter">
+	                    
+			<form id="deletePolicy">
+				<div class="form-group">
+				    <label for="exampleFormControlSelect1">Policy</label>
+				    <select class="form-control" id="policyID" name="policyID">
+				      <option value="1">Policy Name 1</option>
+				      <option value="2">Policy Name 2</option>
+				      <option value="3">Policy Name 3</option>
+				      <option value="4">Policy Name 4</option>
+				      <option value="5">Policy Name 5</option>
+				    </select>
+				 </div>
+				 <input type="hidden" value="deletePolicy" name="formName">
+				<button type="submit" class="btn btn-danger">Delete Policy</button>
 			</form>
 		    </div>
 
@@ -57,6 +57,7 @@
 <script>
 	// Logic on submit button must be implemented later!!!
 	$(document).ready(function(){
+		
 		var queryCount = 1;//query 1, return all policies from DB
 		
 		if (queryCount <= 0){
@@ -68,10 +69,27 @@
 			$("#deletePolicyUI").show(); //update List dynamically 		
 		}
 		
-	    $("#selectPolicyForm").submit(function(e){
+		
+ 		$("#deletePolicy").submit(function(e){
+	    	
 	    	e.preventDefault();
-	    	//default show success
-	    	$("#success").removeAttr("hidden");
+	    	
+	    	$.ajax(
+	                {
+	                    type: "get",
+	                    url: "/PolicyManagement/Servlet",
+	                  	data: $("#deletePolicy").serialize(),
+	                  	
+	                    success: function(data, textStatus, jqXHR){
+	                    	alert("hi");
+	            	    	//$("#success").removeAttr("hidden");
+	                    },
+	                    error: function(jqXHR){
+	                   	
+	                  	}
+	                });
+
 	    });
+		
 	});
 </script>

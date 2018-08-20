@@ -33,7 +33,35 @@ public class Servlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		String route = request.getParameter("formName");
+		
+		System.out.println(route);
 
+		
+		//delete policy logic
+		if(route.equals("deletePolicy"))
+		{
+			try
+			{
+								
+				PolicyOperations po = new PolicyOperations();
+				
+				System.out.println(request.getParameter("policyID"));
+				
+				po.deletePolicy(request.getParameter("policyID"));
+				
+				response.sendRedirect("delete_policy.jsp");
+			}
+			catch (SQLException e)
+			{
+				
+			}
+		}
+		
+		
+		/*
 		//view agent logic
 		
 		SearchByAgentLogic sa = new SearchByAgentLogic();
@@ -60,17 +88,11 @@ public class Servlet extends HttpServlet {
 			
 		}
 		
-		
+		*/
 		//Create object to run policy operations
 		PolicyOperations p = new PolicyOperations();
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+
 
 }
