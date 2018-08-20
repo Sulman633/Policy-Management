@@ -74,13 +74,13 @@ public class PolicyOperations {
 			pstmt.setString(6, prerequisites);			
 	}
 	
-	public void deletePolicy(String p_id) throws SQLException
+	public void deletePolicy(String p_name) throws SQLException
     {
 		try {
 			Connection dbcon = con.connect();
-			pstmt = dbcon.prepareStatement("DELETE FROM POLICIES WHERE POLICY_ID=?");
+			pstmt = dbcon.prepareStatement("DELETE FROM POLICIES WHERE POLICY_NAME=?");
 			
-			pstmt.setString(1, p_id);
+			pstmt.setString(1, p_name);
 			pstmt.execute();
 			
 		} catch (ClassNotFoundException e) {

@@ -1,13 +1,41 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
+<%@taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.Policy.PolicyManagement.PolicyOperations"%>
+
 <link href="/PolicyManagement/sidebar.css" rel="stylesheet">
+
+<% 
+	PolicyOperations p = new PolicyOperations();
+	ArrayList<String> pnames = null;
+	try{
+		pnames = p.getAllPolicyNames();
+		if(pnames.isEmpty())
+		{
+			request.setAttribute("noPolicies",1);
+		}
+		else
+		{
+			request.setAttribute("noPolicies",0);
+		}
+		
+	}catch(Exception e){
+		
+	}
+	request.setAttribute("policynames",pnames);
+%>
+
 
 <t:genericpage userType="Admin"> 
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
-            <div class="container-fluid">   
+            <div class="container-fluid"> 
+            
+            <div id ="show" class = "show"></div>	
+            </div>  
             
             <div id="deletePolicyUI">
             <h2>Delete Policy</h2>
@@ -20,16 +48,13 @@
 			<form id="deletePolicy">
 				<div class="form-group">
 				    <label for="exampleFormControlSelect1">Policy</label>
-				    <select class="form-control" id="policyID" name="policyID">
-				      <option value="1">Policy Name 1</option>
-				      <option value="2">Policy Name 2</option>
-				      <option value="3">Policy Name 3</option>
-				      <option value="4">Policy Name 4</option>
-				      <option value="5">Policy Name 5</option>
+				    <select class="form-control" id="policyName" name="policyName">
+				      <c:forEach items="${policynames}" var="policy">
+						<option value=<c:out value="${policy}"/>><c:out value="${policy}"/></option>
+					 </c:forEach>
 				    </select>
 				 </div>
-				 <input type="hidden" value="deletePolicy" name="formName">
-				<button type="submit" class="btn btn-danger">Delete Policy</button>
+				 <input type="submit"  class="btn btn-danger" name="deletePolicySubmit" value="Delete Policy">
 			</form>
 		    </div>
 
@@ -48,8 +73,7 @@
 			  </button>
 			 </div>
 				
-				
-            </div>
+			
         </div>
         <!-- /#page-content-wrapper -->
 </t:genericpage>
@@ -57,10 +81,8 @@
 <script>
 	// Logic on submit button must be implemented later!!!
 	$(document).ready(function(){
-		
-		var queryCount = 1;//query 1, return all policies from DB
-		
-		if (queryCount <= 0){
+				
+		if (0){
 			$("#noPolicyUI").show();
 			$("#deletePolicyUI").hide();			
 		}
@@ -88,7 +110,11 @@
 	                  	}
 	                });
 
-	    });
+	   
+ 		
 		
-	});
+	
 </script>
+
+
+		

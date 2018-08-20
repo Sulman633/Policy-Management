@@ -115,6 +115,7 @@
 		         <%}%>		         
 	        </ul>
 	    </div>
+	    <div id = "show" class = "show"></div>
 	    <jsp:doBody/>
 	</div>
     
@@ -132,7 +133,39 @@
 	        $("#wrapper").toggleClass("toggled");
 	    });
 	    
-	});  
-	</script>	
+$.ajax({
+            
+            url:'http://api.openweathermap.org/data/2.5/weather?q=toronto&units=metric&APPID=81eb2655a3e0141a9be2eee5cc400a7b',
+                type:"GET",
+                    dataType:"jsonp",
+                    success: function(data)
+                    {
+                        var widget = show(data);
+                        $("#show").html(widget);
+                        $("#city").val('');
+                        console.log(data);
+                    }
+            
+            
+        });
+		
+    	function show(data){
+    		
+    		return   "<h2 style = 'font-size:40px; font-weight: bold;'>Current Weather for " + data.name + ", " + data.sys.country+"</h2>"+
+    	     "<h2 style = 'font-size:10px; font-weight: bold;'>Current Weather for " + data.name + ", " + data.sys.country+"</h2>"+
+    	    "<h3 ><strong>Weather</strong>: "+data.weather[0].main + "   " +"<strong>Temperature</strong>: "+data.main.temp + " "+ "Celsius"+
+    	      "   " +"<strong>Humidity</strong>: "+data.main.humidity + "   " + "<strong>Wind Speed</strong>: "+data.wind.speed +"</h3>"
+              
+    	}
+    });
+	      
+	</script>
+	<style>
+.show{
+   position: relative;
+   right: 0;
+   border: 3px solid #73AD21;
+}
+</style>	
 </body>
 </html>

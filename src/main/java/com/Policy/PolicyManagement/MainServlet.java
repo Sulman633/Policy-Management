@@ -33,22 +33,15 @@ public class MainServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
-		String route = request.getParameter("formName");
-		
-		System.out.println(route);
-
+		PolicyOperations p = new PolicyOperations();
 		
 		//delete policy logic
-		if(route.equals("deletePolicy"))
+		if(request.getParameter("deletePolicySubmit") != null)
 		{
 			try
 			{
-				PolicyOperations po = new PolicyOperations();
-				
-				System.out.println(request.getParameter("policyID"));
-				
-				po.deletePolicy(request.getParameter("policyID"));
+							
+				p.deletePolicy(request.getParameter("policyName"));
 				
 				response.sendRedirect("delete_policy.jsp");
 			}
@@ -57,7 +50,6 @@ public class MainServlet extends HttpServlet {
 				
 			}
 		}
-		
 		
 		/*
 		//view agent logic
@@ -86,9 +78,10 @@ public class MainServlet extends HttpServlet {
 			
 		}
 		
+		
 		*/
 		//Create object to run policy operations
-		PolicyOperations p = new PolicyOperations();
+		
 		
 		if(request.getParameter("selectPolicySubmit") != null) {
 			/*
