@@ -14,16 +14,16 @@ import javax.servlet.http.HttpServletResponse;
 
 
 /**
- * Servlet implementation class Servlet
+ * MainServlet implementation class MainServlet
  */
-@WebServlet("/Servlet")
-public class Servlet extends HttpServlet {
+@WebServlet("/MainServlet")
+public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Servlet() {
+    public MainServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,7 +44,6 @@ public class Servlet extends HttpServlet {
 		{
 			try
 			{
-								
 				PolicyOperations po = new PolicyOperations();
 				
 				System.out.println(request.getParameter("policyID"));

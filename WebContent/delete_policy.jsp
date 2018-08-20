@@ -77,12 +77,11 @@
 	    	$.ajax(
 	                {
 	                    type: "get",
-	                    url: "/PolicyManagement/Servlet",
+	                    url: "/PolicyManagement/MainServlet",
 	                  	data: $("#deletePolicy").serialize(),
 	                  	
 	                    success: function(data, textStatus, jqXHR){
-	                    	alert("hi");
-	            	    	//$("#success").removeAttr("hidden");
+	            	    	$("#success").removeAttr("hidden");
 	                    },
 	                    error: function(jqXHR){
 	                   	
