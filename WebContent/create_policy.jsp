@@ -5,7 +5,7 @@
 
 <link href="/PolicyManagement/sidebar.css" rel="stylesheet">
 
-<t:genericpage userType="Admin">   
+<t:genericpage userType="admin">   
 
         <!-- Page Content -->
         <div id="page-content-wrapper">

@@ -3,7 +3,7 @@
 
 <link href="/PolicyManagement/sidebar.css" rel="stylesheet">
 
-<t:genericpage userType="Admin">   
+<t:genericpage userType="customer">   
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">                

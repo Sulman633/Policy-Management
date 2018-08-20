@@ -2,7 +2,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 
-<t:genericpage userType="none">   
+<t:genericpage userType="default">   
 
 	    <div >
 	        <ul>
