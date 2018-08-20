@@ -18,7 +18,7 @@
 	}
 	request.setAttribute("policynames",al);
 %>
-<t:genericpage userType="Admin"> 
+<t:genericpage userType="admin"> 
 		
         <!-- Page Content -->
         <div id="page-content-wrapper">

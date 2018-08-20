@@ -31,7 +31,7 @@
 		<nav class="navbar navbar-default navbar-static-top" role="navigation">
 			<!-- navbar header Created by: Khalid-->
 			<div class="navbar-header">
-				<a class="navbar-brand" href="index.jsp">Fast Track Claim And Policy Service <%= userType %></a> 
+				<a class="navbar-brand" href="index.jsp">Fast Track Claim And Policy Service</a> 
 			</div>
 			
 			<!-- navbar toplinks Created by: Khalid-->
@@ -77,20 +77,16 @@
 	    <!-- Sidebar -->
 	    <div id="sidebar-wrapper">
 	        	<%
-        		String typeOfUser = (String)session.getAttribute("userType");
-	        	
-        		if(userType =="none"){%>
+        		//String typeOfUser = (String)session.getAttribute("userType");
+        		if(userType =="default"){%>
         			 <ul class="sidebar-nav">
 			            <li class="sidebar-brand" style="color:white">
-							 None
+							 Please log in.
 					</ul>  
 		         <%} else if(userType == "admin") {%>
 	        		<ul class="sidebar-nav">
 			            <li class="sidebar-brand" style="color:white">
 							 Admin Portal
-						</li>
-						<li>
-			                <a href="/PolicyManagement/buy_policy.jsp">Buy Policy</a>					
 						</li>
 						<li>
 			                <a href="/PolicyManagement/create_policy.jsp">Create Policy</a>					
@@ -100,6 +96,9 @@
 						</li>
 						<li>
 			                <a href="/PolicyManagement/delete_policy.jsp">Delete Policy</a>					
+						</li>
+						<li>
+			                <a href="/PolicyManagement/search_policy.jsp">Search Policy Details by Agent</a>					
 						</li>
 					</ul>	
 		         <%} else if(userType == "manager") {%>
@@ -108,16 +107,7 @@
 							 Manager Portal
 						</li>
 						<li>
-			                <a href="/PolicyManagement/buy_policy.jsp">Buy Policy</a>					
-						</li>
-						<li>
-			                <a href="/PolicyManagement/create_policy.jsp">Create Policy</a>					
-						</li>
-						<li>
-			                <a href="/PolicyManagement/update_policy.jsp">Update Policy</a>					
-						</li>
-						<li>
-			                <a href="/PolicyManagement/delete_policy.jsp">Delete Policy</a>					
+			                <a href="/PolicyManagement/generate_policy_certificate.jsp">Generate Policy Certificate</a>					
 						</li>
 					</ul>		         
 		         <%} else if(userType == "customer"){%>
@@ -129,13 +119,10 @@
 			                <a href="/PolicyManagement/buy_policy.jsp">Buy Policy</a>					
 						</li>
 						<li>
-			                <a href="/PolicyManagement/create_policy.jsp">Create Policy</a>					
+			                <a href="/PolicyManagement/update_nominee.jsp">Update Nominee</a>					
 						</li>
 						<li>
-			                <a href="/PolicyManagement/update_policy.jsp">Update Policy</a>					
-						</li>
-						<li>
-			                <a href="/PolicyManagement/delete_policy.jsp">Delete Policy</a>					
+			                <a href="/PolicyManagement/view_own_policy.jsp">View Own Policy</a>					
 						</li>
 					</ul>     
 		         <%}%>		         
@@ -175,11 +162,8 @@ $.ajax({
         });
 		
     	function show(data){
-    		
-    		return   "<h2 style = 'font-size:40px; font-weight: bold;'>Current Weather for " + data.name + ", " + data.sys.country+"</h2>"+
-    	    "<h3 ><strong>Weather</strong>: "+data.weather[0].main + "   " +"<strong>Temperature</strong>: "+data.main.temp + " "+ "Celsius"+
-    	      "   " +"<strong>Humidity</strong>: "+data.main.humidity + "   " + "<strong>Wind Speed</strong>: "+data.wind.speed +"</h3>"
-              
+    		return   "<h2 style = 'font-size:40px; font-weight: bold;'>Welcome to " + data.name +"</h2>"+
+    	    "<h3 >The weather today is "+data.weather[0].main +".</h3>"
     	}
     });
 	      
