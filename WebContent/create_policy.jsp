@@ -60,8 +60,12 @@
 				    <label for="Prerequisites">Pre-requisites:</label>
 				    <textarea class="form-control" id="Prerequisites" name="Prerequ" rows="3"></textarea>
 				  </div>
+<<<<<<< HEAD
+				  <button type="submit" name="createSubmit" class="btn btn-primary">Submit</button>
+=======
 				  <button type="submit" class="btn btn-primary">Submit</button>
 				  <input type="hidden" name="formName" value="createPolicy">
+>>>>>>> d48eb8da78e38103544038ada482105fee35068c
 				</form>
 				
 				 <!-- Success/Error alerts -->
@@ -102,9 +106,15 @@
 	                    	$("#error").attr("hidden","hidden");             
 	                    },
 	                    error: function(jqXHR){
+<<<<<<< HEAD
+	                    	
+	                }
+	        });
+=======
 	                   	
 	                    	 	                    }
 	                });
+>>>>>>> d48eb8da78e38103544038ada482105fee35068c
 
 	    });
 	});*/

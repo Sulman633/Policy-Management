@@ -3,6 +3,7 @@ package com.Policy.PolicyManagement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class PolicyOperations {
 
@@ -15,21 +16,23 @@ public class PolicyOperations {
 	}
 	
 	//Get all Policy names from policy table
-	public void getAllPolicyNames() throws SQLException {
+	public ArrayList<String> getAllPolicyNames() throws SQLException {
+		ArrayList<String> policyNames = new ArrayList<String>();
 		try {
 			con.connect();
 			pstmt = con.getCon().prepareStatement("SELECT POLICY_NAME FROM POLICIES");
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				System.out.println(rs.getString(1));
+				policyNames.add(rs.getString(1));
 			}
-		} catch (ClassNotFoundException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			rs.close();
 			pstmt.close();
 			con.closeConnection();
 		}
+		return policyNames;
 	}
 	
 	public void createPolicy(String ptype, String pname, int nNom, int pten, int sumA, String prereq) throws SQLException
@@ -52,7 +55,23 @@ public class PolicyOperations {
 			pstmt.close();
 			con.closeConnection();
 		}
-    }
+    }	
+	
+	public void updatePolicy(String policyType, String policyName, int numberOfNominees, int tenure, int sumAssured, String prerequisites) throws SQLException {
+			try {
+				con.connect();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			pstmt = con.getCon().prepareStatement("UPDATE INTO POLICIES(policy_type, policy_name, number_nominees, tenure, sum_assured, pre_reqs)"
+					+ "VALUES(?,?,?,?,?,?)");
+			pstmt.setString(1, policyType);
+			pstmt.setString(2, policyName);
+			pstmt.setInt(3, numberOfNominees);
+			pstmt.setInt(4, tenure);
+			pstmt.setInt(5, sumAssured);
+			pstmt.setString(6, prerequisites);			
+	}
 	
 	public void deletePolicy(String p_id) throws SQLException
     {
@@ -74,8 +93,4 @@ public class PolicyOperations {
 			con.closeConnection();
 		}
     }
-	
-	
-	
-	
 }

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -91,6 +90,27 @@ public class Servlet extends HttpServlet {
 		*/
 		//Create object to run policy operations
 		PolicyOperations p = new PolicyOperations();
+		
+		if(request.getParameter("selectPolicySubmit") != null) {
+			/*
+			 * 			try {
+				ArrayList<String> policyNames = p.getAllPolicyNames();
+				request.setAttribute("policynames", arg1);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			 */
+		}
+
+		if(request.getParameter("createSubmit") != null) {
+			String policyName = request.getParameter("Pname");
+			String nominees = request.getParameter("Nominees");
+			String typePolicy = request.getParameter("typeRadio");
+			String tenure = request.getParameter("tenureRadio");
+			String sumAssured = request.getParameter("SumAssured");
+			String prereq = request.getParameter("Prerequisites");
+			//p.createPolicy(typePolicy, typePolicy, nominees, tenure, sumAssured, prereq);
+		}
 	}
 
 
