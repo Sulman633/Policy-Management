@@ -35,7 +35,6 @@ public class MainServlet extends HttpServlet {
 		
 		PolicyOperations p = new PolicyOperations();
 		
-		System.out.println(request.getParameter("policyName"));
 		//delete policy logic
 		if(request.getParameter("deletePolicySubmit") != null)
 		{

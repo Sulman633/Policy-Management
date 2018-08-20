@@ -78,9 +78,7 @@ public class PolicyOperations {
     {
 		try {
 			Connection dbcon = con.connect();
-			System.out.println("89809");
 			pstmt = dbcon.prepareStatement("DELETE FROM POLICIES WHERE POLICY_NAME=?");
-			System.out.println("6786");
 			pstmt.setString(1, p_name);
 			pstmt.execute();
 			System.out.println("deleted policy");
