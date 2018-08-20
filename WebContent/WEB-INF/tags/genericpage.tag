@@ -72,7 +72,7 @@
 	</div>
 	
  	<div id="wrapper">
-    	<a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
+    	<a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Side Menu</a>
 	
 	    <!-- Sidebar -->
 	    <div id="sidebar-wrapper">

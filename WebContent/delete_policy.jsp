@@ -104,7 +104,6 @@
 	                  	data: $("#deletePolicy").serialize(),
 	                  	
 	                    success: function(data, textStatus, jqXHR){
-	                    	alert("hi");
 	            	    	$("#success").removeAttr("hidden");
 	                    },
 	                    error: function(jqXHR){
