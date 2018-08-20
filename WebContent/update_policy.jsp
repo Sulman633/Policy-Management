@@ -27,6 +27,7 @@
             
             <!-- UI 1/3 -->
             <div id="noPolicyUI">
+                <h2>Update Policy</h2>
 				<h2>No Policies to update. 
 				Please create a policy before you update it.</h2>
 		    </div>
@@ -34,6 +35,7 @@
 		    <!-- UI 2/3 -->
             
             <div id="selectPolicyUI">
+            <h2>Update Policy</h2>
 			<h3>dynamically update form</h3>
 			<form id="selectPolicy">
 				<select>
@@ -48,7 +50,7 @@
 		    <!-- UI 3/3 -->
             
             <div id="updatePolicyUI">
-                 <h1>Update Policy</h1>
+                 <h2>Update Policy</h2>
                	 <h3>Set placeholder values in form based on requested policy</h3>
 				<form id="updatePolicyForm">
 				  <div class="form-group">
