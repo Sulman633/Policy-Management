@@ -7,97 +7,113 @@
 
 <link href="/PolicyManagement/sidebar.css" rel="stylesheet">
 
+<% 
+
+	session.getAttribute("policynames");
+%>
 
 <t:genericpage userType="customer">   
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">                
                
+               <div class="row">
+               
+               <div class="col-xs-2"></div>
+               
+               <div class="col-xs-8">
+               
 				
-				<form id="buyPolicy">
-				<div class="form-group">
-				    <label for="policyType">Type of Insurance:</label>
-				    <select class="form-control" id="policyType" name="policyType">
-				      <option value="accidental">Accidental</option>
-				      <option value="whole life">Whole Life</option>
-				      <option value="term">Term</option>
-				      <option value="pension scheme">Pension Scheme</option>
-				    </select>
-				  </div>
-				  
-				  <!-- Make list of policies based on type of insurance -->
-				  
-				  <div class="form-group" id="policies" hidden>
-				  	<label for="policyName">Policy</label>
-				  	<select class="form-control" id="policyName" name="policyName">
-				  	</select>
-				  </div>
-				  <!-- Make tenure dropdown based on policy -->
-				  
-				  <div class="form-group">
-					  <div class="row">
-				            <div class=" col-xs-6">
-				                <label for="Nominee" class="control-label">Nominee:</label>
-				                <input type="text" class="form-control" name="nominee" placeholder="Name" required>
-				            </div>
-				            <div class=" col-xs-6">
-				                <label for="Relationship" class="control-label">Relationship:</label>
-				                <input type="text" class="form-control" name="relationship" placeholder="Relationship" required>
-				            </div>
-				        </div>
-				  </div>				  
-				  <div class="form-check form-check-inline">
-				  	  <label for="PremiumType">Premium Type:</label><br>
-					  <input class="form-check-input" type="radio" name="premiumRadio" id="premium1" value="Quarterly" checked="checked">
-					  <label class="form-check-label" for="inlineRadio1">Quarterly</label>
-					</div>
-					<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="radio" name="premiumRadio" id="premium2" value="Halfway">
-					  <label class="form-check-label" for="inlineRadio2">Halfway</label>
-					</div>
-					<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="radio" name="premiumRadio" id="premium3" value="Annually">
-					  <label class="form-check-label" for="inlineRadio3">Annually</label>
-					</div>
-					
-				  <div class="form-group">
-				    <label for="SumAssured">Sum Assured:</label>
-				    <select class="form-control" name="sumAssured">
-				    </select>
-				  </div>
-				    
-				    <!-- Premium amount value dynamically shown -->
-				    <div class="form-group">
-		    			<label>Date Of Birth:</label>
-		    		    <input name="birthDate" type='date' class="form-control" min='1899-01-01' max='2000-13-13' required><br>
-		    		    <label>Birth Certificate:</label><br>
-		    		    <label class="custom-file">
+				<form id="buyPolicy" style="border:1px solid black; padding:2em ; text-align:center; border-radius: 10px;">
+				
+					<h2>Buy Policy</h2><hr>
+					  
+					  <!-- Make list of policies based on type of insurance -->
+					  
+					  <div class="form-group" id="policies">
+					  	<label for="policyName">Policy</label>
+					  	<select class="form-control" id="policyName" name="policyName">
+						  	<c:forEach items="${policynames}" var="policy">
+								<option value=<c:out value="${policy}"/>><c:out value="${policy}"/></option>
+						 	</c:forEach>
+					  	</select>
+					  </div>
+					  <!-- Make tenure dropdown based on policy -->
+					  
+					  <div class="form-group">
+						  <div class="row">
+					            <div class=" col-xs-6">
+					                <label for="Nominee" class="control-label">Nominee:</label>
+					                <input type="text" class="form-control" name="nominee" placeholder="Name" required>
+					            </div>
+					            <div class=" col-xs-6">
+					                <label for="Relationship" class="control-label">Relationship:</label>
+					                <input type="text" class="form-control" name="relationship" placeholder="Relationship" required>
+					            </div>
+					        </div>
+					  </div>				  
+					  <div class="form-check form-check-inline">
+					  	  <label for="PremiumType">Premium Type:</label><br>
+						  <input class="form-check-input" type="radio" name="premiumRadio" id="premium1" value="Quarterly" checked="checked">
+						  <label class="form-check-label" for="inlineRadio1">Quarterly</label>
+					  </div>
+					  <div class="form-check form-check-inline">
+						  <input class="form-check-input" type="radio" name="premiumRadio" id="premium2" value="Halfway">
+						  <label class="form-check-label" for="inlineRadio2">Halfway</label>
+					  </div>
+					  <div class="form-check form-check-inline">
+						  <input class="form-check-input" type="radio" name="premiumRadio" id="premium3" value="Annually">
+						  <label class="form-check-label" for="inlineRadio3">Annually</label>
+					  </div>
+						
+					  <div class="form-group">
+					    <label for="SumAssured">Sum Assured:</label>
+					    <select class="form-control" name="sumAssured">
+					    </select>
+					  </div>
+					    
+					  <!-- Premium amount value dynamically shown -->
+					  <div class="form-group">
+			    		<label>Date Of Birth:</label>
+			   		    <input name="birthDate" id="birthDate" type='date' class="form-control" min='1899-01-01' max='2000-13-13' required><br>
+			   		    <label>Birth Certificate:</label><br>
+			   		    <label class="custom-file">
 							<input type="file" id="birthcertificate" name="birthcertificate" class="custom-file-input" required>
 							<span class="custom-file-control"></span>
 						</label>
-		    		</div>
-		    		
-		    		<div class="form-group">
-			    		<label>Pan card:</label><br>
-			    		<label class="custom-file">
+				     </div>
+			    	
+			    	 <div class="form-group">
+				    	<label>Pan card:</label><br>
+				    	<label class="custom-file">
 						  <input type="file" id="pancard" name="pancard" class="custom-file-input" required>
 						  <span class="custom-file-control"></span>
 						</label>
 					</div>
 					
 					<!-- Medical details -->
-		    		
-		    		<div class="form-group">
+			    	
+			    	<div class="form-group">
 					    <label for="AgentID">Agent ID:</label>
 					    <input type="number" class="form-control" id="AgentID" name="agentID" placeholder="ID" required>
 					</div>	
-		    		
-		    		<div class="form-group">
-		    			<label>Policy Initiation Date:</label>
-						<input name="policyDate" type='date' class="form-control" min='1899-01-01' max='2000-13-13'required>
-		    		</div>
-				  <button type="submit" class="btn btn-primary">Submit</button>
+			    		
+			    	<div class="form-group">
+			    		<label>Policy Initiation Date:</label>
+						<input name="policyDate" id="policyDate" type='date' class="form-control" min='1899-01-01' max='2000-13-13'required>
+			    	</div>
+			    	
+			    	<input type="hidden" name="buyPolicySubmit" value="buyPolicySubmit">
+			    	
+					<button type="submit" class="btn btn-primary">Submit</button>
 				</form>
+				
+				</div>
+				
+				<div class="col-xs-2"></div>
+				
+				</div>
+				
 				 <!-- Success/Error alerts -->
                 <div id="success" class="alert alert-success alert-dismissible" role="alert" hidden>
 				  Successfully created policy!
@@ -135,6 +151,7 @@
 		    } 
 
 		today = yyyy+'-'+mm+'-'+dd;
+		
 		document.getElementById("birthDate").setAttribute("max", today);
 		document.getElementById("policyDate").setAttribute("max", today);
 		
@@ -176,7 +193,7 @@
 			
 			$.ajax(
 	                {
-	                    type: "post",
+	                    type: "get",
 	                    url: "/PolicyManagement/Servlet", //Your full URL goes here
 	                  	data: $("#buyPolicy").serialize(),
 	                  	

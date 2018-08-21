@@ -1,17 +1,15 @@
 package com.Policy.PolicyManagement;
 
 import java.io.IOException;
-import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 /**
@@ -20,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/MainServlet")
 public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    HttpSession sess;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -34,10 +32,11 @@ public class MainServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		sess = request.getSession(true);
+		
 		PolicyOperations p = new PolicyOperations();
 		
 		//create policy logic
-		
 		if(request.getParameter("createPolicySubmit") != null)
 		{
 			
@@ -80,17 +79,29 @@ public class MainServlet extends HttpServlet {
 				
 			}
 		}
-		else if (request.getParameter("buyPolicySubmit") != null)
+		else if (request.getParameter("buyPolicy1Submit") != null)
 		{
 			
+			System.out.println("hi");
+
 			try
 			{
+				ArrayList<String> pnames = null;
+				
+				pnames = p.getPoliciesByType(request.getParameter("policyType"));
+				
+				System.out.println("back");
+				sess.setAttribute("policynames", pnames);
+				System.out.println("sack");
+				
+				/*
+				
 				if(request.getParameter("nominee") == null)
 				{
-					ArrayList<String> pnames = null;
+					
 					
 					try{
-						pnames = p.getPoliciesByType(request.getParameter("policyType"));
+						
 						
 					}catch(Exception e){
 						
@@ -113,7 +124,7 @@ public class MainServlet extends HttpServlet {
 			        p.buyPolicy(policyName,nominee,relationship,premium,sumAss,birthCert,pancard,agentID,date);
 				
 			        response.sendRedirect("buy_policy.jsp");
-				}
+				}*/
 			}
 			catch (SQLException e)
 			{
@@ -176,7 +187,4 @@ public class MainServlet extends HttpServlet {
 			//p.createPolicy(typePolicy, typePolicy, nominees, tenure, sumAssured, prereq);
 		}
 	}
-
-
-
 }

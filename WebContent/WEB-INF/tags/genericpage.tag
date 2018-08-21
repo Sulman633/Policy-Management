@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <!-- BootStrap Core CSS -->
-<link rel="stylesheet" href="startbootstrap-sb-admin-2-gh-pages/vendor/bootstrap/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
 <!-- MetisMenu CSS -->
 <link rel="stylesheet" href="startbootstrap-sb-admin-2-gh-pages/vendor/metisMenu/metisMenu.min.css"/>
@@ -27,8 +27,8 @@
 <title>Fast Track Policy & Claims Service</title>
 </head>
 <body>
-	<div id="wrapp">
-		<nav class="navbar navbar-default navbar-static-top" role="navigation">
+
+	<nav class="navbar navbar-default fixed-top" style="background-color:#f8f8f8">
 			<!-- navbar header Created by: Khalid-->
 			<div class="navbar-header">
 				<a class="navbar-brand" href="index.jsp">Fast Track Claim And Policy Service</a> 
@@ -69,11 +69,14 @@
 				</li>
 			</ul>
 		</nav>
-	</div>
 	
- 	<div id="wrapper" class="toggled">	
-	    <!-- Sidebar -->
-	    <div id="sidebar-wrapper" class="toggled">
+	<div class="container-fluid" style="margin-top:4em"> 
+	
+	<div class="row">
+	
+	<div class="col-md-3" style="background-color:grey">
+	
+		 <div>
 	        	<%
         		//String typeOfUser = (String)session.getAttribute("userType");
         		if(userType =="default"){%>
@@ -114,7 +117,7 @@
 							 Customer Portal
 						</li>
 						<li>
-			                <a href="/PolicyManagement/buy_policy.jsp">Buy Policy</a>					
+			                <a href="/PolicyManagement/buy_policy1.jsp">Buy Policy</a>					
 						</li>
 						<li>
 			                <a href="/PolicyManagement/update_nominee.jsp">Update Nominee</a>					
@@ -125,10 +128,18 @@
 					</ul>     
 		         <%}%>		         
 	    </div>
-	    <div id = "show" class = "show"></div>
+	 </div>
+	    
+	 <div class="col-md-9">
 	    
 	    <jsp:doBody/>
+	    
+	 </div>
+	
 	</div>
+	
+	</div>
+
     
 	<!-- JQuery -->
 	<script src="startbootstrap-sb-admin-2-gh-pages/vendor/jquery/jquery.min.js"></script>
@@ -144,7 +155,7 @@
 	        $("#wrapper").toggleClass("toggled");
 	    });
 	    
-$.ajax({
+		$.ajax({
             
             url:'http://api.openweathermap.org/data/2.5/weather?q=toronto&units=metric&APPID=81eb2655a3e0141a9be2eee5cc400a7b',
                 type:"GET",
@@ -159,11 +170,6 @@ $.ajax({
             
             
         });
-		
-    	function show(data){
-    		return   "<h2 style = 'font-size:40px; font-weight: bold;'>Welcome to " + data.name +"</h2>"+
-    	    "<h3 >Today's weather forecast: "+data.weather[0].main +"</h3>"
-    	}
     });
 	      
 	</script>

@@ -39,6 +39,8 @@ public class PolicyOperations {
 	public ArrayList<String> getPoliciesByType(String type) throws SQLException {
 		ArrayList<String> policyNames = new ArrayList<String>();
 		try {
+			
+			System.out.println(type);
 			con.connect();
 			pstmt = con.getCon().prepareStatement("SELECT POLICY_NAME FROM POLICIES WHERE POLICY_TYPE=?");
 			pstmt.setString(1, type);

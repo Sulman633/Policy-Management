@@ -47,7 +47,7 @@
             <div id="deletePolicyUI">
                            
 			<form id="deletePolicy" style="border:1px solid black; padding:2em ; text-align:center; border-radius: 10px;">
-				<h2>Delete Policy</h2>
+				<h2>Delete Policy</h2><hr>
 				<div class="form-group">
 				    <label for="exampleFormControlSelect1">Policy</label>
 				    <select class="form-control" id="policyName" name="policyName">

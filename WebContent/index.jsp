@@ -21,28 +21,29 @@
 
 <t:genericpage userType="default">   
 
-	    <div >
-	        <ul>
-		            <li style="color:white">
-					</li>
-					<li>
-		                <a href="/PolicyManagement/customer_index.jsp">Login as Customer</a>					
-					</li>
-					<li> 
-		                <a href="/PolicyManagement/manager_index.jsp">Login as Manager</a>					
-					</li>
-					<li>
-		                <a href="/PolicyManagement/admin_index.jsp">Login as Admin</a>					
-					</li>
-	         	         
-	        </ul>
-	    </div>
+					
+				<div id = "show" class = "show"></div>
+				
+				<br>
+					
+					 <div style="text-align:center;" >
 	    
-	    <div id="wrapper">
-	    	<button id="mapbutton" onclick="displayMap()" type="button" class="btn btn-outline-primary">Show Map</button>
-	    </div>
-	    <div id="map"></div> 	
-
+		                <p><a href="/PolicyManagement/customer_index.jsp">Login as Customer</a>	</p>				
+		                <p><a href="/PolicyManagement/manager_index.jsp">Login as Manager</a></p>				
+		                <p><a href="/PolicyManagement/admin_index.jsp">Login as Admin</a></p>				
+	         	         
+	    			</div>
+	    			
+	    			<br>
+	    
+				    <div id="wrapper">
+				    	<button id="mapbutton" onclick="displayMap()" type="button" class="btn btn-outline-primary">Show Map</button>
+				    </div>
+				    
+				    <br>
+				    
+				    <div id="map"></div> 
+	
 	    
 	    
   
@@ -50,6 +51,11 @@
 
 <script>
     
+    
+	function show(data){
+		return "<h3 >Today's weather forecast in " + data.name + " is " + data.weather[0].main +"</h3>"
+	}
+	
     // button functionality to show/hide map
     function displayMap() {
     	var b = document.getElementById('mapbutton');

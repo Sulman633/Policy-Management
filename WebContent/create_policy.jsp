@@ -1,14 +1,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-...
-
 <link href="/PolicyManagement/sidebar.css" rel="stylesheet">
 
 <t:genericpage userType="admin">   
 
         <!-- Page Content -->
-        <div id="page-content-wrapper" class="toggled">
+        <div id="page-content-wrapper"  style="margin-top:4em" class="toggled">
             <div class="container-fluid">
             
             	<div class="row">
@@ -19,8 +17,8 @@
            	            	 
                 <form id = "createPolicy" style="border:1px solid black; padding:2em ; text-align:center; border-radius: 10px;" >
                 
-                  <h2>Create Policy</h2>
-                  <br>
+                  <h2>Create Policy</h2><hr>
+                  
 				  <div class="form-group">
 				    <label for="PolicyName">Policy Name:</label>
 				    <input type="text" class="form-control" id="PolicyName" name = "Policyname" placeholder="Policy Name">
@@ -73,7 +71,7 @@
 				  </div>
 				  <br/>
 				  <input type="hidden" name="createPolicySubmit" value="createPolicySubmit">
-				 <button type="submit" class="btn btn-danger"> Submit</button>
+				 <button type="submit" class="btn btn-primary"> Submit</button>
               
 				</form>
 				</div>
@@ -85,9 +83,7 @@
         <!-- /#page-content-wrapper -->
 
     </div>
-    <!-- /#wrapper -->
-    
-      
+    <!-- /#wrapper -->  
       
 </t:genericpage>
 
