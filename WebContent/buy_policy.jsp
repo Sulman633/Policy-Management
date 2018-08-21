@@ -7,27 +7,8 @@
 
 <link href="/PolicyManagement/sidebar.css" rel="stylesheet">
 
-<% 
-	PolicyOperations p = new PolicyOperations();
-	ArrayList<String> pnames = null;
-	try{
-		pnames = p.getAllPolicyNames();
-		if(pnames.isEmpty())
-		{
-			request.setAttribute("noPolicies",1);
-		}
-		else
-		{
-			request.setAttribute("noPolicies",0);
-		}
-		
-	}catch(Exception e){
-		
-	}
-	request.setAttribute("policynames",pnames);
-%>
 
-<t:genericpage userType="Customer">   
+<t:genericpage userType="customer">   
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">                
