@@ -1,6 +1,7 @@
 package com.Policy.PolicyManagement;
 
 import java.io.IOException;
+import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,20 +36,7 @@ public class MainServlet extends HttpServlet {
 		
 		PolicyOperations p = new PolicyOperations();
 		
-		//delete policy logic
-		if(request.getParameter("deletePolicySubmit") != null)
-		{
-			try
-			{							
-				p.deletePolicy(request.getParameter("policyName"));
-				
-				response.sendRedirect("delete_policy.jsp");
-			}
-			catch (SQLException e)
-			{
-				
-			}
-		}
+		//create policy logic
 		
 		if(request.getParameter("createPolicySubmit") != null)
 		{
@@ -62,8 +50,7 @@ public class MainServlet extends HttpServlet {
 	        String sumAss = request.getParameter("Sumassured");
 	        int sumA = Integer.parseInt(sumAss);
 	        String prereq = request.getParameter("Prerequ");
-	        Integer num;
-	        num = new Integer(40);	     
+     
 	        
 	        try {
 	        	
@@ -78,6 +65,63 @@ public class MainServlet extends HttpServlet {
 	        }*/
 	       
 		}
+		
+		//delete policy logic
+		else if(request.getParameter("deletePolicySubmit") != null)
+		{
+			try
+			{							
+				p.deletePolicy(request.getParameter("policyName"));
+				
+				response.sendRedirect("delete_policy.jsp");
+			}
+			catch (SQLException e)
+			{
+				
+			}
+		}
+		else if (request.getParameter("buyPolicySubmit") != null)
+		{
+			
+			try
+			{
+				if(request.getParameter("nominee") == null)
+				{
+					ArrayList<String> pnames = null;
+					
+					try{
+						pnames = p.getPoliciesByType(request.getParameter("policyType"));
+						
+					}catch(Exception e){
+						
+					}
+					
+					request.setAttribute("policynames",pnames);
+				}
+				else
+				{
+					String policyName = request.getParameter("policyName");
+					String nominee = request.getParameter("nominee");
+			        String relationship = request.getParameter("relationship");
+			        String premium = request.getParameter("premiumRadio");
+			        String sumAss = request.getParameter("sumAssured");
+			        String birthCert = request.getParameter("birthcertificate");
+			        String pancard = request.getParameter("pancard");
+			        int agentID = Integer.parseInt(request.getParameter("agentID"));
+			        String date = request.getParameter("policyDate");
+			        
+			        p.buyPolicy(policyName,nominee,relationship,premium,sumAss,birthCert,pancard,agentID,date);
+				
+			        response.sendRedirect("buy_policy.jsp");
+				}
+			}
+			catch (SQLException e)
+			{
+				
+			}
+		}
+		
+		
 		
 		/*
 		//view agent logic

@@ -36,6 +36,26 @@ public class PolicyOperations {
 		return policyNames;
 	}
 	
+	public ArrayList<String> getPoliciesByType(String type) throws SQLException {
+		ArrayList<String> policyNames = new ArrayList<String>();
+		try {
+			con.connect();
+			pstmt = con.getCon().prepareStatement("SELECT POLICY_NAME FROM POLICIES WHERE POLICY_TYPE=?");
+			pstmt.setString(1, type);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				policyNames.add(rs.getString(1));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			rs.close();
+			pstmt.close();
+			con.closeConnection();
+		}
+		return policyNames;
+	}
+	
 	public void createPolicy(String ptype, String pname, int nNom, int pten, int sumA, String prereq) throws SQLException
     {
 		try {
@@ -48,6 +68,28 @@ public class PolicyOperations {
 			pstmt.setInt(4, pten);
 			pstmt.setInt(5, sumA);
 			pstmt.setString(6, prereq);
+			pstmt.executeQuery();
+	        System.out.println("executed query"); 
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}finally {
+			pstmt.close();
+			con.closeConnection();
+		}
+    }
+	
+	public void buyPolicy(String policyName,String nominee,String relationship,String premium,String sumAss,String birthCert,String pancard,int agentID,String date) throws SQLException
+    {
+		try {
+			con.connect();
+			pstmt = con.getCon().prepareStatement("INSERT INTO POLICIES(policy_id, policy_type, policy_name, number_nominees, tenure, sum_assured, pre_reqs)"
+                    + "VALUES(policy_seq.nextval,?,?,?,?,?,?)");
+			/*pstmt.setString(1, ptype);
+			pstmt.setString(2, pname);
+			pstmt.setInt(3, nNom);
+			pstmt.setInt(4, pten);
+			pstmt.setInt(5, sumA);
+			pstmt.setString(6, prereq);*/
 			pstmt.executeQuery();
 	        System.out.println("executed query"); 
 		} catch (ClassNotFoundException e) {

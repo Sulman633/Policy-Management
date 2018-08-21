@@ -84,8 +84,6 @@
 <script>
 	// Logic on submit button must be implemented later!!!
 	$(document).ready(function(){
-				
-	
 		
  		$("#createPolicy").submit(function(e){
 	    	
