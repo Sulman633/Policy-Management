@@ -132,4 +132,28 @@ public class PolicyOperations {
 			con.closeConnection();
 		}
     }
+	
+	
+	
+	public ArrayList<String> getPolicyByCustomer(String cusID) throws SQLException {
+		ArrayList<String> policyNames = new ArrayList<String>();
+		try {
+			con.connect();
+			pstmt = con.getCon().prepareStatement("select policies.policy_name from policies inner join policymap on policies.policy_id = policymap.policy_id where policymap.customer_id = '"+cusID+"'");
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				policyNames.add(rs.getString(1));
+		
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			rs.close();
+			pstmt.close();
+			con.closeConnection();
+		}
+		return policyNames;
+	}	
+	
+	
 }
