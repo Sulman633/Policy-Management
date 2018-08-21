@@ -162,7 +162,7 @@ $.ajax({
 		
     	function show(data){
     		return   "<h2 style = 'font-size:40px; font-weight: bold;'>Welcome to " + data.name +"</h2>"+
-    	    "<h3 >The weather today is "+data.weather[0].main +".</h3>"
+    	    "<h3 >Today's weather forecast: "+data.weather[0].main +"</h3>"
     	}
     });
 	      
