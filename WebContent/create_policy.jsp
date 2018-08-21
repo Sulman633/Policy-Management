@@ -8,12 +8,19 @@
 <t:genericpage userType="admin">   
 
         <!-- Page Content -->
-        <div id="page-content-wrapper">
+        <div id="page-content-wrapper" class="toggled">
             <div class="container-fluid">
-                <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
-                <form id = "createPolicy">
-               
+            
+            	<div class="row">
+            	
+            	<div class="col-xs-2"></div>
+            	
+            	<div class="col-xs-8">
+           	            	 
+                <form id = "createPolicy" style="border:1px solid black; padding:2em ; text-align:center; border-radius: 10px;" >
                 
+                  <h2>Create Policy</h2>
+                  <br>
 				  <div class="form-group">
 				    <label for="PolicyName">Policy Name:</label>
 				    <input type="text" class="form-control" id="PolicyName" name = "Policyname" placeholder="Policy Name">
@@ -44,16 +51,16 @@
 				  
 			 <div class="form-check form-check-inline">
 				  	  <label for="Tenure">Tenure:</label></br>
-					  <input class="form-check-input" type="radio" name="tenureRadio" id="tenure1" value=4 checked="checked">
-					  <label class="form-check-label" for="inlineRadio1">4</label>
+					  <input class="form-check-input" type="radio" name="tenureRadio" id="tenure1" value=1 checked="checked">
+					  <label class="form-check-label" for="inlineRadio1">1</label>
 					</div>
 					<div class="form-check form-check-inline">
 					  <input class="form-check-input" name="tenureRadio" type="radio" id="tenure2" value=2>
 					  <label class="form-check-label" for="inlineRadio2">2</label>
 					</div>
 					<div class="form-check form-check-inline">
-					  <input class="form-check-input" name="tenureRadio" type="radio" id="tenure3" value=1>
-					  <label class="form-check-label" for="inlineRadio3">1</label>
+					  <input class="form-check-input" name="tenureRadio" type="radio" id="tenure3" value=4>
+					  <label class="form-check-label" for="inlineRadio3">4</label>
 					</div>
 					
 					<div class="form-group">
@@ -69,6 +76,9 @@
 				 <button type="submit" class="btn btn-danger"> Submit</button>
               
 				</form>
+				</div>
+				<div class="col-xs-2"></div>
+				</div>
                 
             </div>
         </div>

@@ -71,11 +71,9 @@
 		</nav>
 	</div>
 	
- 	<div id="wrapper">
-    	<a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Side Menu</a>
-	
+ 	<div id="wrapper" class="toggled">	
 	    <!-- Sidebar -->
-	    <div id="sidebar-wrapper">
+	    <div id="sidebar-wrapper" class="toggled">
 	        	<%
         		//String typeOfUser = (String)session.getAttribute("userType");
         		if(userType =="default"){%>
@@ -128,6 +126,7 @@
 		         <%}%>		         
 	    </div>
 	    <div id = "show" class = "show"></div>
+	    
 	    <jsp:doBody/>
 	</div>
     

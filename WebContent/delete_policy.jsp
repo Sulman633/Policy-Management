@@ -33,19 +33,21 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid"> 
-            
-            <div id ="show" class = "show"></div>	
-            </div>  
-            
+           
+           <div class="row">
+            	
+            	<div class="col-xs-2"></div>
+            	
+            	<div class="col-xs-8">
+            	
+            	<div id="noPolicyUI" hidden>
+					<h2>No Policies to delete. Please create a policy before you delete it.</h2>
+		    	</div>
+		    
             <div id="deletePolicyUI">
-            <h2>Delete Policy</h2>
-            
-            <div id="noPolicyUI" hidden>
-				<h2>No Policies to delete. 
-				Please create a policy before you delete it.</h2>
-		    </div>
-	                    
-			<form id="deletePolicy">
+                           
+			<form id="deletePolicy" style="border:1px solid black; padding:2em ; text-align:center; border-radius: 10px;">
+				<h2>Delete Policy</h2>
 				<div class="form-group">
 				    <label for="exampleFormControlSelect1">Policy</label>
 				    <select class="form-control" id="policyName" name="policyName">
@@ -57,6 +59,9 @@
 				 <input type="hidden" name="deletePolicySubmit" value="deletePolicySubmit">
 				 <button type="submit" class="btn btn-danger"> Submit</button>
 			</form>
+			</div>
+			<div class="col-xs-2"></div>
+			</div>
 		    </div>
 
 			 <!-- Success Notification -->
@@ -73,7 +78,7 @@
 				    <span aria-hidden="true">&times;</span>
 			  </button>
 			 </div>
-				
+				</div>
 			
         </div>
         <!-- /#page-content-wrapper -->
