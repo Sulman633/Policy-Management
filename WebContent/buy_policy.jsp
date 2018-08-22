@@ -5,131 +5,133 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.Policy.PolicyManagement.PolicyOperations"%>
 
-<link href="/PolicyManagement/sidebar.css" rel="stylesheet">
-
 <% 
 
-	session.getAttribute("policynames");
+	session.getAttribute("number");
+	session.getAttribute("policy");
+	session.getAttribute("type");
 %>
 
 <t:genericpage userType="customer">   
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">                
                
-               <div class="row">
+               <div class="col-md-2"></div>
                
-               <div class="col-xs-2"></div>
-               
-               <div class="col-xs-8">
-               
+               <div class="col-md-8">
 				
-				<form id="buyPolicy" style="border:1px solid black; padding:2em ; text-align:center; border-radius: 10px;">
-				
-					<h2>Buy Policy</h2><hr>
-					  
-					  <!-- Make list of policies based on type of insurance -->
-					  
-					  <div class="form-group" id="policies">
-					  	<label for="policyName">Policy</label>
-					  	<select class="form-control" id="policyName" name="policyName">
-						  	<c:forEach items="${policynames}" var="policy">
-								<option value=<c:out value="${policy}"/>><c:out value="${policy}"/></option>
-						 	</c:forEach>
-					  	</select>
-					  </div>
-					  <!-- Make tenure dropdown based on policy -->
-					  
-					  <div class="form-group">
-						  <div class="row">
-					            <div class=" col-xs-6">
-					                <label for="Nominee" class="control-label">Nominee:</label>
-					                <input type="text" class="form-control" name="nominee" placeholder="Name" required>
-					            </div>
-					            <div class=" col-xs-6">
-					                <label for="Relationship" class="control-label">Relationship:</label>
-					                <input type="text" class="form-control" name="relationship" placeholder="Relationship" required>
-					            </div>
-					        </div>
-					  </div>				  
-					  <div class="form-check form-check-inline">
-					  	  <label for="PremiumType">Premium Type:</label><br>
-						  <input class="form-check-input" type="radio" name="premiumRadio" id="premium1" value="Quarterly" checked="checked">
-						  <label class="form-check-label" for="inlineRadio1">Quarterly</label>
-					  </div>
-					  <div class="form-check form-check-inline">
-						  <input class="form-check-input" type="radio" name="premiumRadio" id="premium2" value="Halfway">
-						  <label class="form-check-label" for="inlineRadio2">Halfway</label>
-					  </div>
-					  <div class="form-check form-check-inline">
-						  <input class="form-check-input" type="radio" name="premiumRadio" id="premium3" value="Annually">
-						  <label class="form-check-label" for="inlineRadio3">Annually</label>
-					  </div>
-						
-					  <div class="form-group">
-					    <label for="SumAssured">Sum Assured:</label>
-					    <select class="form-control" name="sumAssured">
-					    </select>
-					  </div>
-					    
-					  <!-- Premium amount value dynamically shown -->
-					  <div class="form-group">
-			    		<label>Date Of Birth:</label>
-			   		    <input name="birthDate" id="birthDate" type='date' class="form-control" min='1899-01-01' max='2000-13-13' required><br>
-			   		    <label>Birth Certificate:</label><br>
-			   		    <label class="custom-file">
-							<input type="file" id="birthcertificate" name="birthcertificate" class="custom-file-input" required>
-							<span class="custom-file-control"></span>
-						</label>
-				     </div>
-			    	
-			    	 <div class="form-group">
-				    	<label>Pan card:</label><br>
-				    	<label class="custom-file">
-						  <input type="file" id="pancard" name="pancard" class="custom-file-input" required>
-						  <span class="custom-file-control"></span>
-						</label>
-					</div>
+				   <form id="buyPolicy" style="border:1px solid black; padding:2em ; text-align:center; border-radius: 10px;" method="get" action="/PolicyManagement/MainServlet">
 					
-					<!-- Medical details -->
-			    	
-			    	<div class="form-group">
-					    <label for="AgentID">Agent ID:</label>
-					    <input type="number" class="form-control" id="AgentID" name="agentID" placeholder="ID" required>
-					</div>	
-			    		
-			    	<div class="form-group">
-			    		<label>Policy Initiation Date:</label>
-						<input name="policyDate" id="policyDate" type='date' class="form-control" min='1899-01-01' max='2000-13-13'required>
-			    	</div>
-			    	
-			    	<input type="hidden" name="buyPolicySubmit" value="buyPolicySubmit">
-			    	
-					<button type="submit" class="btn btn-primary">Submit</button>
-				</form>
+						<h2>Buy Policy</h2><hr><br>
+						  
+						  <!-- Make tenure dropdown based on policy -->
+						  
+						  <div class="form-group">
+						  	<c:forEach var = "i" begin = "1" end = "${number}">
+						        <div class="row">
+						            <div class=" col-md-4">
+						                <label for="Nominee" class="control-label">Nominee <c:out value = "${i}"/>:</label>
+						                <input type="text" class="form-control" name="nominee<c:out value = "${i}"/>" placeholder="Name" required>
+						            </div>
+						            <div class=" col-md-4">
+						                <label for="Relationship" class="control-label">Relationship <c:out value = "${i}"/>:</label>
+						                <input type="text" class="form-control" name="relationship<c:out value = "${i}"/>" placeholder="Relationship" required>
+						            </div>
+						            <div class=" col-md-4">
+						                <label for="Percentage" class="control-label">Percentage <c:out value = "${i}"/>:</label>
+						                <input type="text" class="form-control" name="percentage<c:out value = "${i}"/>" placeholder="Relationship" required>
+						            </div>
+						      </div>
+						      <br>
+						    </c:forEach>
+							  
+						  </div>	
+						  <label for="PremiumType">Premium Rate:</label><br>		  
+						  <div class="form-check form-check-inline">
+							  <input class="form-check-input" type="radio" name="premiumRateRadio" id="premium1" value="4" checked="checked">
+							  <label class="form-check-label" for="inlineRadio1">Quarterly</label>
+						  </div>
+						  <div class="form-check form-check-inline">
+							  <input class="form-check-input" type="radio" name="premiumRateRadio" id="premium2" value="2">
+							  <label class="form-check-label" for="inlineRadio2">Halfway</label>
+						  </div>
+						  <div class="form-check form-check-inline">
+							  <input class="form-check-input" type="radio" name="premiumRateRadio" id="premium3" value="1">
+							  <label class="form-check-label" for="inlineRadio3">Annually</label>
+						  </div>
+						  <br><br>
+						  <div class="form-group">
+						    <label for="amount">Premium Amount:</label>
+						    <select class="form-control" id="amount" name="amount">
+						    </select>
+						  </div>
+						    
+						  <!-- Premium amount value dynamically shown -->
+						  <div class="form-group">
+				    		<label>Date Of Birth:</label>
+				   		    <input name="birthDate" id="birthDate" type='date' class="form-control" min='1899-01-01' max='2000-13-13' required><br>
+				   		    <label>Birth Certificate:</label><br>
+				   		    <label class="custom-file">
+								<input type="file" id="birthcertificate" name="birthcertificate" class="custom-file-input" required>
+								<span class="custom-file-control"></span>
+							</label>
+					     </div>
+				    	
+				    	 <div class="form-group">
+					    	<label>Pan card:</label><br>
+					    	<label class="custom-file">
+							  <input type="file" id="pancard" name="pancard" class="custom-file-input" required>
+							  <span class="custom-file-control"></span>
+							</label>
+						</div>
+						
+						<div class="form-group">
+						    <label for="CustomerID">Customer ID:</label>
+						    <input type="number" class="form-control" id="CustomerID" name="customerID" placeholder="ID" required>
+						</div>
+										    	
+				    	<div class="form-group">
+						    <label for="AgentID">Agent ID:</label>
+						    <input type="number" class="form-control" id="AgentID" name="agentID" placeholder="ID" required>
+						</div>	
+						
+						<div class="form-group">
+						    <label for="medDetails">Medical Details:</label>
+						    <input type="text" class="form-control" id="medDetails" name="medDetails" placeholder="text..." required>
+						</div>
+				    		
+				    	<div class="form-group">
+				    		<label>Policy Initiation Date:</label>
+							<input name="policyDate" id="policyDate" type='date' class="form-control" min='1899-01-01' max='2000-13-13'required>
+				    	</div>
+				    	
+				    	<input type="hidden" name="policy" value="<c:out value = "${policy}"/>">
+				    	
+				    	<input type="hidden" name="type" value="<c:out value = "${type}"/>">
+				    	
+				    	<input type="hidden" name="numNominees" value="<c:out value = "${number}"/>">
+				    	
+				    	<input type="hidden" name="buyPolicySubmit" value="buyPolicySubmit">
+				    	
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</form>
+					
+					<!-- Success/Error alerts -->
+	                <div id="success" class="alert alert-success alert-dismissible" role="alert" hidden>
+					  Successfully created policy!
+					  	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    					<span aria-hidden="true">&times;</span>
+	 					</button>
+					</div>
+					<div id="error" class="alert alert-danger alert-dismissible" role="alert" hidden>
+					  Error in creating policy.
+					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						    <span aria-hidden="true">&times;</span>
+					  </button>
+					</div>
 				
 				</div>
 				
-				<div class="col-xs-2"></div>
-				
-				</div>
-				
-				 <!-- Success/Error alerts -->
-                <div id="success" class="alert alert-success alert-dismissible" role="alert" hidden>
-				  Successfully created policy!
-				  	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    					<span aria-hidden="true">&times;</span>
- 					</button>
-				</div>
-				<div id="error" class="alert alert-danger alert-dismissible" role="alert" hidden>
-				  Error in creating policy.
-				  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					    <span aria-hidden="true">&times;</span>
-				  </button>
-				</div>
-            </div>
-        </div>
-        <!-- /#page-content-wrapper -->
+				<div class="col-md-2"></div>
+
 </t:genericpage>
 
 <script>
@@ -161,21 +163,21 @@
 			var selectItem = document.createElement("option");
 			selectItem.textContext = i;
 			
-			$("#SumAssured").append($('<option>', {
+			$("#amount").append($('<option>', {
 			    value: i,
 			    text: i
 			}));
 		}
 		
 		// Submit functionality
-	    $("#buyPolicy").submit(function(e){
+	    /*$("#buyPolicy").submit(function(e){
 	    	
 	    	e.preventDefault();
 	    	
 	    	$.ajax(
 	                {
-	                    type: "post",
-	                    url: "/PolicyManagement/Servlet", //Your full URL goes here
+	                    type: "get",
+	                    url: "/PolicyManagement/MainServlet", //Your full URL goes here
 	                  	data: $("#buyPolicy").serialize(),
 	                  	
 	                    success: function(data, textStatus, jqXHR){
@@ -183,26 +185,10 @@
 	                    	$("#error").attr("hidden","hidden");             
 	                    },
 	                    error: function(jqXHR){
-	                    	
+	                    	alert("hi");
 	                   }
 	                });
 
-	    });
-		
-		$("#InsuranceType").change(function(e){
-			
-			$.ajax(
-	                {
-	                    type: "get",
-	                    url: "/PolicyManagement/Servlet", //Your full URL goes here
-	                  	data: $("#buyPolicy").serialize(),
-	                  	
-	                    success: function(data, textStatus, jqXHR){
-	                    },
-	                    error: function(jqXHR){
-	                    	
-	                   }
-	                });
-		});
+	    });*/
 	});
 </script>
