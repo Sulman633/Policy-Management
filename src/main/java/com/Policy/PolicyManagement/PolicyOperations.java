@@ -17,6 +17,33 @@ public class PolicyOperations {
 		con = new JDBC_Connection();
 	}
 	
+	
+	public boolean canDeletePolicy(String name) throws SQLException {
+		boolean x = true;
+		
+		int id = getPolicyID(name);
+		
+		try {
+			con.connect();
+			pstmt = con.getCon().prepareStatement("SELECT * FROM POLICYMAP WHERE POLICY_ID=? ");
+			pstmt.setInt(1, id);
+			rs = pstmt.executeQuery();
+						
+			while(rs.next()) {
+				x = false;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			rs.close();
+			pstmt.close();
+			con.closeConnection();
+		}
+		
+		return x;
+	}
+	
 	//Get all Policy names from policy table
 	public ArrayList<String> getAllPolicyNames() throws SQLException {
 		ArrayList<String> policyNames = new ArrayList<String>();

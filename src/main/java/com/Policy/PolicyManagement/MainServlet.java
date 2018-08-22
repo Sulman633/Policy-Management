@@ -38,8 +38,6 @@ public class MainServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 	    PolicyOperations p = new PolicyOperations();
 	    
-	   
-	    
 		//update policy logic 
 		// by Sulman
 		if(request.getParameter("SelectPolicySubmit") != null) {
@@ -59,7 +57,7 @@ public class MainServlet extends HttpServlet {
 			}
 		}
 		
-		if(request.getParameter("UpdatePolicySubmit") != null) {
+		else if(request.getParameter("UpdatePolicySubmit") != null) {
 			ArrayList<String> arr = (ArrayList<String>) sess.getAttribute("policyDetails"); 
 			
 			try {
@@ -70,13 +68,11 @@ public class MainServlet extends HttpServlet {
 			} catch (NumberFormatException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-
-		
-		sess = request.getSession(true);
-		
+			}
+		}
 		
 		//create policy logic
-		if(request.getParameter("createPolicySubmit") != null)
+		else if(request.getParameter("createPolicySubmit") != null)
 		{
 			
 	        String pName = request.getParameter("Policyname");
@@ -108,10 +104,24 @@ public class MainServlet extends HttpServlet {
 		else if(request.getParameter("deletePolicySubmit") != null)
 		{
 			try
-			{							
-				p.deletePolicy(request.getParameter("policyName"));
+			{	
 				
-				response.sendRedirect("delete_policy.jsp");
+				boolean x = p.canDeletePolicy(request.getParameter("policyName"));
+				
+				if(x)
+				{
+					System.out.println("im here");
+					p.deletePolicy(request.getParameter("policyName"));
+					
+					response.sendRedirect("delete_policy.jsp");
+				}
+				
+				else {
+					response.sendError(1, "error");
+					response.sendRedirect("delete_policy.jsp");
+				}
+				
+				
 			}
 			catch (SQLException e1)
 			{
@@ -200,37 +210,6 @@ public class MainServlet extends HttpServlet {
 
 			}
 		}
-				/*
-				
-				if(request.getParameter("nominee") == null)
-				{
-					
-					
-					try{
-						
-						
-					}catch(Exception e){
-						
-					}
-					
-					request.setAttribute("policynames",pnames);
-				}
-				else
-				{
-					String policyName = request.getParameter("policyName");
-					String nominee = request.getParameter("nominee");
-			        String relationship = request.getParameter("relationship");
-			        String premium = request.getParameter("premiumRadio");
-			        String sumAss = request.getParameter("sumAssured");
-			        String birthCert = request.getParameter("birthcertificate");
-			        String pancard = request.getParameter("pancard");
-			        int agentID = Integer.parseInt(request.getParameter("agentID"));
-			        String date = request.getParameter("policyDate");
-			        
-			        p.buyPolicy(policyName,nominee,relationship,premium,sumAss,birthCert,pancard,agentID,date);
-				
-			        response.sendRedirect("buy_policy.jsp");
-				}*/
 		else if(request.getParameter("generateCertificateSubmit")!=null)
 	       {
 	           HttpSession session = request.getSession();
@@ -261,61 +240,5 @@ public class MainServlet extends HttpServlet {
 
 	           response.sendRedirect("generate_policy_certificate.jsp");
 	       }
-		
-		
-		String route = request.getParameter("formName");
-		
-		//delete policy logic
-//		if(route.equals("deletePolicy"))
-//		{
-//			try
-//			{
-//				PolicyOperations po = new PolicyOperations();
-//				
-//				System.out.println(request.getParameter("policyID"));
-//				
-//				po.deletePolicy(request.getParameter("policyID"));
-//				
-//				response.sendRedirect("delete_policy.jsp");
-//			}
-//			catch (SQLException e)
-//			{
-//				
-//			}
-//		}
-		
-		
-		/*
-		//view agent logic
-		
-		SearchByAgentLogic sa = new SearchByAgentLogic();
-		
-		String agentID = ""; // should be request.getparameter(agentID) from jsp
-		
-		try {
-			ArrayList<String> customers = sa.getCustomersForAgent(agentID);
-			
-			Iterator<String> c_iterator = customers.iterator();
-			
-			Map<String,ArrayList<String>> policiesPerCustomer = new HashMap<>();
-
-			while(c_iterator.hasNext())
-			{
-				String customerID = c_iterator.next();
-				policiesPerCustomer.put(customerID, sa.getPoliciesForCustomer(customerID));
-			}
-			
-			//logic to send response back to search_by_agent jsp to be implemented
-		}
-		
-		catch(SQLException e) {
-			
-		}
-		
-		
-		*/
-
-			}
-		}
 	}	
 }	
