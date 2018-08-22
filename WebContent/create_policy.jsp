@@ -21,7 +21,7 @@
                   
 				  <div class="form-group">
 				    <label for="PolicyName">Policy Name:</label>
-				    <input type="text" class="form-control" id="PolicyName" name = "Policyname" placeholder="Policy Name">
+				    <input type="text" class="form-control" id="PolicyName" name = "Policyname" placeholder="Policy Name" required>
 				  </div>
 				  
 				   <div class="form-check form-check-inline">
@@ -44,7 +44,7 @@
 					
 				  <div class="form-group">
 				    <label for="NumberNominees">Number of Nominees Required:</label>
-				    <input type="number" min="1" max=10" class="form-control" id="NumberNominees" name = "Numbernominees" placeholder="1">
+				    <input type="number" min="1" max="10" class="form-control" id="NumberNominees" name = "Numbernominees" placeholder="1">
 				  </div>
 				  
 			 <div class="form-check form-check-inline">
@@ -92,7 +92,19 @@
 	$(document).ready(function(){
 		
  		$("#createPolicy").submit(function(e){
-	    	
+ 			
+ 			// Validation
+		    var name = document.getElementById('PolicyName').value;
+ 			var prereq = document.getElementById('Prerequisites').value;
+
+		    if(/[^a-zA-Z0-9]/.test(name)){
+		    	alert('Policy Name cannot contain special characters');
+		    }
+		    else if (/[^a-zA-Z0-9]/.test(prereq)) {
+		    	alert('Pre-requisites cannot contain special characters');
+		    }
+		    
+		    
 	    	e.preventDefault();
 	    	
 	    	$.ajax(
