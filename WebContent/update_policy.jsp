@@ -73,7 +73,7 @@
 						    <label for="Prerequisites">Pre-requisites:</label>
 						    <textarea class="form-control" id="Prerequisites" name="Prerequisites" rows="3" > ${policyDetails[5]} </textarea>
 					  </div>
-					  <button type="submit" name="updateSubmit" class="btn btn-primary">Submit</button>
+					  <button id="submitForm" type="submit" name="updateSubmit" class="btn btn-primary">Submit</button>
 					  <input type="hidden" value="updatePolicySubmit" name="UpdatePolicySubmit">
 					  
 					</form>

@@ -217,7 +217,7 @@
 	                  	
 	                    success: function(data, textStatus, jqXHR){
 	                    	$("#success").removeAttr("hidden");
-	                    	$("#error").attr("hidden","hidden");             
+	                    	$("#error").attr("hidden","hidden"); 
 	                    },
 	                    error: function(jqXHR){
 	                    	alert("hi");
