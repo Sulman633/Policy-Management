@@ -4,25 +4,24 @@
 <%@page import="java.util.ArrayList"%>
 
 
-<link href="/PolicyManagement/sidebar.css" rel="stylesheet">
-
 
 <!-- Written by Khalid / Sulman -->
 <%
 	session.getAttribute("policyDetails"); 
 %>
 
-<t:genericpage userType="Admin"> 
+
+
+<t:genericpage userType="admin"> 
+		<div class="col-md-2"></div>
+            	
+         	<div class="col-md-8">
 		
         <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">   
-            
-            
-	            <div id="updatePolicyUI">
-	                 <h1>Update Policy</h1>
-	               	 <h3>Set placeholder values in form based on requested policy</h3>
+                   
 					<form id="updatePolicyForm">
+					 <h1>Update Policy</h1>
+	               	 <h3>Set placeholder values in form based on requested policy</h3>
 					  <div class="form-group">
 					    <label for="PolicyName">Policy Name:</label>
 	
@@ -78,7 +77,7 @@
 					  <input type="hidden" value="updatePolicySubmit" name="UpdatePolicySubmit">
 					  
 					</form>
-	            </div>
+	            
 	            
 				 <!-- Success Notification -->
 	             <div id="success" class="alert alert-success alert-dismissible" role="alert" hidden>
@@ -94,9 +93,12 @@
 					    <span aria-hidden="true">&times;</span>
 				  </button>
 				 </div>
-            </div>
-        </div>
-        <!-- /#page-content-wrapper -->
+				 
+				 </div>
+				 
+				 <div class="col-md-2"></div>
+				 
+
 </t:genericpage>
 
 <script>
@@ -123,6 +125,34 @@
 	    	//Query 2 get policy details from DB with policy selected
 	    	e.preventDefault();
 	   
+	    });
+	    
+
+	    $("#selectPolicy").submit(function(e){
+	    	
+	    	// Validation
+		    var name = document.getElementById('PolicyName').value;
+
+		    if(/[^a-zA-Z0-9]/.test(name)){
+		    	alert('Policy Name cannot contain special characters');
+		    }
+		    
+	    	e.preventDefault();
+	    	$.ajax(
+	                {
+	                    type: "get",
+	                    url: "/PolicyManagement/Servlet", //Your full URL goes here
+	                  	data: $("#selectPolicy").serialize(),
+	                  	
+	                    success: function(data, textStatus, jqXHR){
+	                    	$("#success").removeAttr("hidden");
+	                    	$("#error").attr("hidden","hidden");             
+	                    },
+	                    error: function(jqXHR){
+	                    	
+	                }
+	       	});
+
 	    });
 	    
 	});
