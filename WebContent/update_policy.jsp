@@ -56,7 +56,7 @@
 				  <div class="form-group">
 				    <label for="PolicyName">Policy Name:</label>
 
-				    <input type="text" class="form-control" id="PolicyName" name="Pname" placeholder="Policy Name" required>
+				    <input type="text" class="form-control" id="PolicyName" name="Pname" placeholder="Policy Name" onblur="checkValidation()" required>
 				  </div>			  
 				  <div class="form-group">
 				    <label for="NumberNominees">Number of Nominees Required:</label>
@@ -103,7 +103,7 @@
 				    <label for="Prerequisites">Pre-requisites:</label>
 				    <textarea class="form-control" id="Prerequisites" name="Prerequisites" rows="3"></textarea>
 				  </div>
-				  <button type="submit" name="updateSubmit" class="btn btn-primary">Submit</button>
+				  <button id="submitForm" type="submit" name="updateSubmit" class="btn btn-primary" onclick="checkValidation()">Submit</button>
 				</form>
             </div>
             
@@ -129,6 +129,19 @@
 </t:genericpage>
 
 <script>
+	//Validation
+	function checkValidation(){
+	    var name = document.getElementById('PolicyName').value;
+	
+	    if(/[^a-zA-Z0-9]/.test(name)){
+	    	alert('Policy Name cannot contain special characters');
+	    	document.getElementById("submitForm").disabled = true;
+	    }
+	    
+	    else {
+	    	document.getElementById("submitForm").disabled = false;
+	    }
+	}
 	// Logic on submit button must be implemented later!!!
 	$(document).ready(function(){
 		var queryCount = 1;//query 1, return all policies from DB
@@ -181,14 +194,10 @@
 		update Policy DB call
 		success nofication 
 		*/
+		
+		
 	    $("#selectPolicy").submit(function(e){
 	    	
-	    	// Validation
-		    var name = document.getElementById('PolicyName').value;
-
-		    if(/[^a-zA-Z0-9]/.test(name)){
-		    	alert('Policy Name cannot contain special characters');
-		    }
 		    
 	    	e.preventDefault();
 	    	$.ajax(
