@@ -8,6 +8,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
 <!-- BootStrap Core CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
@@ -23,138 +26,127 @@
 <!-- Custom Fonts -->
 <link rel="stylesheet" href="startbootstrap-sb-admin-2-gh-pages/vendor/font-awesome/css/font-awesome.min.css"/>
 
-<link href="/PolicyManagement/sidebar.css" rel="stylesheet">
+<link href="/PolicyManagement/custom.css" rel="stylesheet">
 <title>Fast Track Policy & Claims Service</title>
 </head>
 <body>
 
-	<nav class="navbar navbar-default fixed-top" style="background-color:#f8f8f8">
-			<!-- navbar header Created by: Khalid-->
-			<div class="navbar-header">
-				<a class="navbar-brand" href="index.jsp">Fast Track Claim And Policy Service</a> 
-			</div>
-			
-			<!-- navbar toplinks Created by: Khalid-->
-			<ul class="nav navbar-top-links navbar-right"]>
-				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-						<i class="fa fa-gear fa-fw"></i>
-						<i class="fa fa-caret-down"></i>
-					</a>
-					<ul class="dropdown-menu dropdown-user">
-						<li>
-							<a href="#">
-								<i class="fa fa-puzzle-piece fa-fw">Preferences</i>
-							</a>
-						</li>
-					</ul>
-				</li>
-				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-						<i class="fa fa-user fa-fw"></i>
-						<i class="fa fa-caret-down"></i>
-					</a>
-					<ul class="dropdown-menu dropdown-user">
-						<li>
-							<a href="#">
-								<i class="fa fa-user fa-fw">User Profile</i>								
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<i class="fa fa-sign-out fa-fw">Logout</i>
-							</a>
-						</li>
-					</ul>
-				</li>
-			</ul>
-		</nav>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	  <a class="navbar-brand" href="/PolicyManagement/index.jsp">Fast Track Claim And Policy Service</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
 	
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav mr-auto">
+	      <%
+        	if(userType =="default"){%>
+        		<li class="nav-item active">
+	        		<a class="nav-link" href="#">Please login <span class="sr-only">(current)</span></a>
+	      		</li>
+	      <%} else if(userType == "admin") {%>
+	      		<li class="nav-item active">
+	        		<a class="nav-link" href="#">Admin Portal <span class="sr-only">(current)</span></a>
+	      		</li>
+	      		<li class="nav-item dropdown">
+	        		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          			Menu
+	        		</a>
+	        		<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			          <a class="dropdown-item" href="/PolicyManagement/create_policy.jsp">Create Policy</a>
+			          <a class="dropdown-item" href="/PolicyManagement/update_policy.jsp">Update Policy</a>
+			          <a class="dropdown-item" href="/PolicyManagement/delete_policy.jsp">Delete Policy</a>
+			          <a class="dropdown-item" href="/PolicyManagement/search_policy.jsp">Search Policy Details by Agent</a>
+			        </div>
+			    </li>
+		         <%} else if(userType == "manager") {%>
+		         	<li class="nav-item active">
+		        		<a class="nav-link" href="#">Manager Portal <span class="sr-only">(current)</span></a>
+		      		</li>
+		      		<li class="nav-item dropdown">
+		        		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		          			Menu
+		        		</a>
+		        		<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				          <a class="dropdown-item" href="/PolicyManagement/generate_policy_certificate.jsp">Generate Policy Certificate</a>
+				        </div>
+				    </li>
+		         <%} else if(userType == "customer"){%>
+		         	<li class="nav-item active">
+		        		<a class="nav-link" href="#">Customer Portal <span class="sr-only">(current)</span></a>
+		      		</li>
+		      		<li class="nav-item dropdown">
+		        		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		          			Menu
+		        		</a>
+		        		<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				          <a class="dropdown-item" href="/PolicyManagement/buy_policy1.jsp">Buy Policy</a>
+				          <a class="dropdown-item" href="/PolicyManagement/update_nominee.jsp">Update Nominee</a>
+				          <a class="dropdown-item" href="/PolicyManagement/view_own_policy.jsp">View Own Policy</a>
+				        </div>
+				    </li>
+		         <%}%>		 
+	    </ul>
+	  </div>
+	</nav>
 	<div class="container-fluid" style="margin-top:4em"> 
 	
-	<div class="row">
-	
-	<div class="col-md-3" style="background-color:grey">
-	
-		 <div>
-	        	<%
-        		//String typeOfUser = (String)session.getAttribute("userType");
-        		if(userType =="default"){%>
-        			 <ul class="sidebar-nav">
-			            <li class="sidebar-brand" style="color:white">
-							 Please log in.
-					</ul>  
-		         <%} else if(userType == "admin") {%>
-	        		<ul class="sidebar-nav">
-			            <li class="sidebar-brand" style="color:white">
-							 Admin Portal
-						</li>
-						<li>
-			                <a href="/PolicyManagement/create_policy.jsp">Create Policy</a>					
-						</li>
-						<li>
-			                <a href="/PolicyManagement/update_policy.jsp">Update Policy</a>					
-						</li>
-						<li>
-			                <a href="/PolicyManagement/delete_policy.jsp">Delete Policy</a>					
-						</li>
-						<li>
-			                <a href="/PolicyManagement/search_policy.jsp">Search Policy Details by Agent</a>					
-						</li>
-					</ul>	
-		         <%} else if(userType == "manager") {%>
-	        		<ul class="sidebar-nav">
-			            <li class="sidebar-brand" style="color:white">
-							 Manager Portal
-						</li>
-						<li>
-			                <a href="/PolicyManagement/generate_policy_certificate.jsp">Generate Policy Certificate</a>					
-						</li>
-					</ul>		         
-		         <%} else if(userType == "customer"){%>
-		            <ul class="sidebar-nav">
-			            <li class="sidebar-brand" style="color:white">
-							 Customer Portal
-						</li>
-						<li>
-			                <a href="/PolicyManagement/buy_policy1.jsp">Buy Policy</a>					
-						</li>
-						<li>
-			                <a href="/PolicyManagement/update_nominee.jsp">Update Nominee</a>					
-						</li>
-						<li>
-			                <a href="/PolicyManagement/view_own_policy.jsp">View Own Policy</a>					
-						</li>
-					</ul>     
-		         <%}%>		         
-	    </div>
-	 </div>
-	    
-	 <div class="col-md-9">
-	    
-	    <jsp:doBody/>
-	    
-	 </div>
+		<div class="row">
+		
+			<jsp:doBody/>
+		    
+		</div>
 	
 	</div>
 	
-	</div>
 
     
-	<!-- JQuery -->
-	<script src="startbootstrap-sb-admin-2-gh-pages/vendor/jquery/jquery.min.js"></script>
-	<!-- Bootstrap Core Java Script -->
-	<script src="startbootstrap-sb-admin-2-gh-pages/vendor/bootstrap/js/bootstrap.min.js"></script>	
-	<!-- Metis Menu Plugin Javascript -->	
-	<script src="startbootstrap-sb-admin-2-gh-pages/vendor/metisMenu/metisMenu.min.js"></script>	
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+<script>
+
+//button functionality to show/hide map
+function displayMap() {
+	var b = document.getElementById('mapbutton');
 	
-	<script>
+	// create map if it doesn't already exist
+	if (typeof maps == "undefined") {
+		document.getElementById('map').style.display="block";
+		var LatLng = {lat: 43.6539982, lng: -79.3879103};
+	    var mapOptions = {
+	        zoom: 15,
+	        center: LatLng,
+	        mapTypeId: google.maps.MapTypeId.ROADMAP
+	    };
+	    maps = new google.maps.Map(document.getElementById('map'), mapOptions);
+	    var marker = new google.maps.Marker({
+	          position: LatLng,
+	          map: maps,
+	          title: 'TCS'
+	        });
+		b.innerHTML = 'Hide Map';
+	}
+	
+	// set to hidden or visible if map exists
+	else {
+		if (document.getElementById('map').style.display == "none"){
+			b.innerHTML = 'Hide Map';
+			document.getElementById('map').style.display = "block";
+		}
+		else {
+			b.innerHTML = 'Show Map';
+			document.getElementById('map').style.display = "none";
+		}
+	}
+};
+
 	$(document).ready(function(){
-	    $("#menu-toggle").click(function(e) {
-	        e.preventDefault();
-	        $("#wrapper").toggleClass("toggled");
-	    });
 	    
+		function show(data){
+			return "<h3 >Today's weather forecast in " + data.name + " is " + data.weather[0].main +"</h3>"
+		}
+		
 		$.ajax({
             
             url:'http://api.openweathermap.org/data/2.5/weather?q=toronto&units=metric&APPID=81eb2655a3e0141a9be2eee5cc400a7b',
@@ -170,16 +162,17 @@
             
             
         });
+		
+		
+	    
+	    
     });
 	      
 	</script>
 	
-	<style>
-.show{
-   position: relative;
-   right: 0;
-   border: 3px solid #73AD21;
-}
-</style>	
+	 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBY5QEZfaHQluvIPZyx3Y--NZbF_Z3XLEM&callback=initMap"
+    async defer></script>
+	
 </body>
+
 </html>

@@ -132,6 +132,38 @@ public class MainServlet extends HttpServlet {
 			}
 		}
 		
+		else if(request.getParameter("generateCertificateSubmit")!=null)
+	       {
+	           HttpSession session = request.getSession();
+	           System.out.println("in generate certificate");
+
+	           try {
+	           ArrayList<String> pd =    p.generateCertificate(request.getParameter("policyId"), request.getParameter("customerId"));
+	           System.out.println(pd);
+
+	           String polid = pd.get(0);
+	           String polname = pd.get(1);
+	           String cusid = pd.get(2);
+	           String sumass = pd.get(3);
+	           String prem = pd.get(4);
+	           String ten = pd.get(5);
+
+	           session.setAttribute("polid", polid);
+	           session.setAttribute("polname", polname);
+	           session.setAttribute("cusid", cusid);
+	           session.setAttribute("sumass", sumass);
+	           session.setAttribute("prem", prem);
+	           session.setAttribute("ten", ten);
+
+
+	           } catch (SQLException e) {
+	               // TODO Auto-generated catch block
+	               e.printStackTrace();
+	           }
+
+	           response.sendRedirect("generate_policy_certificate.jsp");
+	       }
+		
 		
 		
 		/*

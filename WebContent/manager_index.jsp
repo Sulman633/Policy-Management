@@ -3,6 +3,4 @@
 
 <t:genericpage userType="manager">   
 
-		<h1>Manager Logged in</h1>
-
 </t:genericpage>

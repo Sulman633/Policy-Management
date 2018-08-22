@@ -1,19 +1,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<link href="/PolicyManagement/sidebar.css" rel="stylesheet">
-
 <t:genericpage userType="admin">   
-
-        <!-- Page Content -->
-        <div id="page-content-wrapper"  style="margin-top:4em" class="toggled">
-            <div class="container-fluid">
-            
-            	<div class="row">
             	
-            	<div class="col-xs-2"></div>
+            	<div class="col-md-2"></div>
             	
-            	<div class="col-xs-8">
+            	<div class="col-md-8">
            	            	 
                 <form id = "createPolicy" style="border:1px solid black; padding:2em ; text-align:center; border-radius: 10px;" >
                 
@@ -24,8 +16,9 @@
 				    <input type="text" class="form-control" id="PolicyName" name = "Policyname" placeholder="Policy Name" required>
 				  </div>
 				  
+				  <label for="Type">Type:</label><br>
+				  
 				   <div class="form-check form-check-inline">
-				  	  <label for="Type">Type:</label></br>
 					  <input class="form-check-input" type="radio" name="typeRadio" id="type1" value="Accidental" checked="checked">
 					  <label class="form-check-label" for="inlineRadio1">Accidental</label>
 					</div>
@@ -41,14 +34,15 @@
 					  <input class="form-check-input" name="typeRadio" type="radio" id="type4" value="Pension">
 					  <label class="form-check-label" for="inlineRadio3">Pension</label>
 					</div>		
-					
+					<br><br>
 				  <div class="form-group">
 				    <label for="NumberNominees">Number of Nominees Required:</label>
 				    <input type="number" min="1" max="10" class="form-control" id="NumberNominees" name = "Numbernominees" placeholder="1">
 				  </div>
 				  
-			 <div class="form-check form-check-inline">
-				  	  <label for="Tenure">Tenure:</label></br>
+				  <label for="Tenure">Tenure:</label><br>
+				  
+			 	  <div class="form-check form-check-inline">	  
 					  <input class="form-check-input" type="radio" name="tenureRadio" id="tenure1" value=1 checked="checked">
 					  <label class="form-check-label" for="inlineRadio1">1</label>
 					</div>
@@ -60,7 +54,8 @@
 					  <input class="form-check-input" name="tenureRadio" type="radio" id="tenure3" value=4>
 					  <label class="form-check-label" for="inlineRadio3">4</label>
 					</div>
-					
+					<br>
+					<br>
 					<div class="form-group">
 					    <label for="SunmAssured">Sum Assured (1 lakh to 50 lakh):</label>
 					    <input type="number" min="1" max="50" class="form-control" id="SumAssured" name ="Sumassured" placeholder="1">
@@ -75,15 +70,7 @@
               
 				</form>
 				</div>
-				<div class="col-xs-2"></div>
-				</div>
-                
-            </div>
-        </div>
-        <!-- /#page-content-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->  
+				<div class="col-md-2"></div>
       
 </t:genericpage>
 
@@ -114,7 +101,6 @@
 	                  	data: $("#createPolicy").serialize(),
 	                  	
 	                    success: function(data, textStatus, jqXHR){
-	                    	//alert("hi");
 	            	    	$("#success").removeAttr("hidden");
 	                    },
 	                    error: function(jqXHR){

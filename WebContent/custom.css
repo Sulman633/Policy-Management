@@ -1,0 +1,44 @@
+
+
+@media(min-width:768px) {
+  #wrapper {
+    padding-left: 0;
+  }
+  #wrapper.toggled {
+    padding-left: 250px;
+  }
+  #sidebar-wrapper {
+    width: 0;
+  }
+  #wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+  }
+  #page-content-wrapper {
+    padding: 20px;
+    position: relative;
+  }
+  #wrapper.toggled #page-content-wrapper {
+    position: relative;
+    margin-right: 0;
+  }
+}
+
+#map {
+      	display: none;
+        height: 500px;
+        width: 500px;
+        margin-left: auto;
+  		margin-right: auto;
+  		margin-top:10px;
+  		margin-bottom:10px;
+}
+
+#wrapper{
+  	text-align: center;
+}
+      
+.weather{
+   position: relative;
+   right: 0;
+   border: 3px solid #73AD21;
+}
