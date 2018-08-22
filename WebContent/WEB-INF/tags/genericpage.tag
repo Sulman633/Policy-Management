@@ -54,7 +54,7 @@
 	        		</a>
 	        		<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 			          <a class="dropdown-item" href="/PolicyManagement/create_policy.jsp">Create Policy</a>
-			          <a class="dropdown-item" href="/PolicyManagement/update_policy.jsp">Update Policy</a>
+			          <a class="dropdown-item" href="/PolicyManagement/select_policy.jsp">Update Policy</a>
 			          <a class="dropdown-item" href="/PolicyManagement/delete_policy.jsp">Delete Policy</a>
 			          <a class="dropdown-item" href="/PolicyManagement/search_policy.jsp">Search Policy Details by Agent</a>
 			        </div>
@@ -157,15 +157,11 @@ function displayMap() {
                         var widget = show(data);
                         $("#show").html(widget);
                         $("#city").val('');
-                        console.log(data);
+                       
                     }
             
-            
         });
-		
-		
-	    
-	    
+		   
     });
 	      
 	</script>

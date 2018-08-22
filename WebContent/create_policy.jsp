@@ -13,7 +13,7 @@
                   
 				  <div class="form-group">
 				    <label for="PolicyName">Policy Name:</label>
-				    <input type="text" class="form-control" id="PolicyName" name = "Policyname" placeholder="Policy Name" required>
+				    <input type="text" class="form-control" id="PolicyName" name = "Policyname" placeholder="Policy Name" onblur="checkValidation()" required>
 				  </div>
 				  
 				  <label for="Type">Type:</label><br>
@@ -62,11 +62,11 @@
 					</div>
 				  <div class="form-group">
 				    <label for="Prerequisites">Pre-requisites:</label>
-				    <input type="text" class="form-control" id="Prerequisites" name = "Prerequ">
+				    <input type="text" class="form-control" id="Prerequisites" name = "Prerequ" onblur="checkValidation()">
 				  </div>
 				  <br/>
 				  <input type="hidden" name="createPolicySubmit" value="createPolicySubmit">
-				 <button type="submit" class="btn btn-primary"> Submit</button>
+				 <button id="submitForm" type="submit" class="btn btn-primary"> Submit</button>
               
 				</form>
 				</div>
@@ -75,23 +75,29 @@
 </t:genericpage>
 
 <script>
+//Validation
+	function checkValidation(){
+	    var name = document.getElementById('PolicyName').value;
+	    var prereq = document.getElementById('Prerequisites').value;
+	
+	    if(/[^a-zA-Z0-9]/.test(name)){
+	    	alert('Policy Name cannot contain special characters');
+	    	document.getElementById("submitForm").disabled = true;
+	    }
+	    
+	    else if (/[^a-zA-Z0-9]/.test(prereq)) {
+	    	alert('Pre-requisites cannot contain special characters');
+	    	document.getElementById("submitForm").disabled = true;
+	    }
+	    
+	    else {
+	    	document.getElementById("submitForm").disabled = false;
+	    }
+	}
 	// Logic on submit button must be implemented later!!!
 	$(document).ready(function(){
 		
- 		$("#createPolicy").submit(function(e){
- 			
- 			// Validation
-		    var name = document.getElementById('PolicyName').value;
- 			var prereq = document.getElementById('Prerequisites').value;
-
-		    if(/[^a-zA-Z0-9]/.test(name)){
-		    	alert('Policy Name cannot contain special characters');
-		    }
-		    else if (/[^a-zA-Z0-9]/.test(prereq)) {
-		    	alert('Pre-requisites cannot contain special characters');
-		    }
-		    
-		    
+ 		$("#createPolicy").submit(function(e){		    
 	    	e.preventDefault();
 	    	
 	    	$.ajax(
@@ -110,4 +116,7 @@
  		});
 	});
 
+	                    	    
 </script>
+
+

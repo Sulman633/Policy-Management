@@ -1,5 +1,4 @@
 package com.Policy.PolicyManagement;
-
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -19,7 +18,9 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/MainServlet")
 public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    HttpSession sess;
+	HttpSession sess;
+
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -32,10 +33,47 @@ public class MainServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		sess = request.getSession(true);
+		response.setContentType("text/html;charset=UTF-8");
+	    PolicyOperations p = new PolicyOperations();
+	    
+	   
+	    
+		//update policy logic 
+		// by Sulman
+		if(request.getParameter("SelectPolicySubmit") != null) {
+			
+			try {
+				System.out.println(request.getParameter("selectPolicyInput"));
+				ArrayList<String> policyDetails = p.getPolicyDetails(request.getParameter("selectPolicyInput"));
+				
+				for(int i=0; i< policyDetails.size(); i++) {
+					System.out.println(policyDetails.get(i));
+				}
+				sess.setAttribute("policyDetails", policyDetails);
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		if(request.getParameter("UpdatePolicySubmit") != null) {
+			ArrayList<String> arr = (ArrayList<String>) sess.getAttribute("policyDetails"); 
+			
+			try {
+				p.updatePolicy(arr.get(0), request.getParameter("Pname"), Integer.parseInt(request.getParameter("Nominees")), request.getParameter("typeRadio"), 
+						Double.parseDouble(request.getParameter("tenureRadio")), 
+						Double.parseDouble(request.getParameter("SumAssured")), request.getParameter("Prerequisites"));
+				
+			} catch (NumberFormatException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+
 		
 		sess = request.getSession(true);
 		
-		PolicyOperations p = new PolicyOperations();
 		
 		//create policy logic
 		if(request.getParameter("createPolicySubmit") != null)
@@ -56,9 +94,9 @@ public class MainServlet extends HttpServlet {
 	        	
 	        	p.createPolicy(ptype, pName, nNom, tPer, sumA, prereq);
 	        	response.sendRedirect("create_policy.jsp");
-	        } catch (SQLException e) {
+	        } catch (SQLException e1) {
 	            // TODO Auto-generated catch block
-	            e.printStackTrace();
+	            e1.printStackTrace();
 	        } /*catch (ClassNotFoundException e) {
 	            // TODO Auto-generated catch block
 	            e.printStackTrace();
@@ -75,7 +113,7 @@ public class MainServlet extends HttpServlet {
 				
 				response.sendRedirect("delete_policy.jsp");
 			}
-			catch (SQLException e)
+			catch (SQLException e1)
 			{
 				
 			}
@@ -95,7 +133,7 @@ public class MainServlet extends HttpServlet {
 								
 				response.sendRedirect("buy_policy2.jsp");
 			}
-			catch( SQLException e)
+			catch( SQLException e1)
 			{
 			}
 		}
@@ -114,7 +152,7 @@ public class MainServlet extends HttpServlet {
 				response.sendRedirect("buy_policy.jsp");
 
 			}
-			catch(SQLException e)
+			catch(SQLException e1)
 			{
 			}
 		}
@@ -175,8 +213,9 @@ public class MainServlet extends HttpServlet {
 
 
 			}
-			catch ( SQLException e)
+			catch ( SQLException e1)
 			{
+
 			}
 		}
 				/*
@@ -232,16 +271,36 @@ public class MainServlet extends HttpServlet {
 	           session.setAttribute("sumass", sumass);
 	           session.setAttribute("prem", prem);
 	           session.setAttribute("ten", ten);
-
-
-	           } catch (SQLException e) {
+	           
+	           } catch (SQLException e1) {
 	               // TODO Auto-generated catch block
-	               e.printStackTrace();
+	               e1.printStackTrace();
 	           }
 
 	           response.sendRedirect("generate_policy_certificate.jsp");
 	       }
 		
+		
+		String route = request.getParameter("formName");
+		
+		//delete policy logic
+//		if(route.equals("deletePolicy"))
+//		{
+//			try
+//			{
+//				PolicyOperations po = new PolicyOperations();
+//				
+//				System.out.println(request.getParameter("policyID"));
+//				
+//				po.deletePolicy(request.getParameter("policyID"));
+//				
+//				response.sendRedirect("delete_policy.jsp");
+//			}
+//			catch (SQLException e)
+//			{
+//				
+//			}
+//		}
 		
 		
 		/*
@@ -273,19 +332,10 @@ public class MainServlet extends HttpServlet {
 		
 		
 		*/
-		//Create object to run policy operations
-		
-		
-		if(request.getParameter("selectPolicySubmit") != null) {
-			/*
-			 * 			try {
-				ArrayList<String> policyNames = p.getAllPolicyNames();
-				request.setAttribute("policynames", arg1);
-			} catch (SQLException e) {
-				e.printStackTrace();
+
 			}
-			 */
 		}
+
 				
 		//Create and Map Nominee
 		if(request.getParameter("newNomineeSubmit") != null) {
