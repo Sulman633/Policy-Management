@@ -144,7 +144,8 @@ function displayMap() {
 	$(document).ready(function(){
 	    
 		function show(data){
-			return "<h3 >Today's weather forecast in " + data.name + " is " + data.weather[0].main +"</h3>"
+			return "<h3 >Today's weather forecast in " + data.name + ": " + data.weather[0].main +"</h3><br>" +
+			"<h3>Temperature: " + data.main.temp + " Celsius</h3>"
 		}
 		
 		$.ajax({
