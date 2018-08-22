@@ -37,13 +37,16 @@
 						            </div>
 						            <div class=" col-md-4">
 						                <label for="Percentage" class="control-label">Percentage <c:out value = "${i}"/>:</label>
-						                <input type="text" class="form-control" name="percentage<c:out value = "${i}"/>" placeholder="Relationship" required>
+						                <input id="percent${i}" type="text" class="form-control" name="percentage<c:out value = "${i}"/>" placeholder="Relationship" onblur="checkPercentage()" required>
 						            </div>
 						      </div>
 						      <br>
 						    </c:forEach>
 							  
 						  </div>	
+						  <div id="alertBox" style="display:none" class="alert alert-danger" role="alert" >Percentages must add up to 100!</div>	       
+						  <div id="negativeBox" style="display:none" class="alert alert-danger" role="alert" >Percentages cannot be negative!</div>	       
+
 						  <label for="PremiumType">Premium Rate:</label><br>		  
 						  <div class="form-check form-check-inline">
 							  <input class="form-check-input" type="radio" name="premiumRateRadio" id="premium1" value="4" checked="checked">
@@ -111,7 +114,7 @@
 				    	
 				    	<input type="hidden" name="buyPolicySubmit" value="buyPolicySubmit">
 				    	
-						<button type="submit" class="btn btn-primary">Submit</button>
+						<button id="submitForm" type="submit" class="btn btn-primary">Submit</button>
 					</form>
 					
 					<!-- Success/Error alerts -->
@@ -136,6 +139,38 @@
 
 <script>
 	// Logic on submit button must be implemented later!!!
+	
+	function checkPercentage(){
+		var sum = 0;
+		var num = ${number};
+		var i;
+		for (i = 1; i <= num; i++) { 
+			var percent = parseInt(document.getElementById("percent"+i).value);
+			
+			if (percent < 0) {
+				document.getElementById("negativeBox").style.display='block';
+				document.getElementById("submitForm").disabled = true;
+				return false;
+			}
+			else {
+				document.getElementById("negativeBox").style.display='none';
+				document.getElementById("submitForm").disabled = false;
+			}
+		    sum += percent;
+		}
+
+		if (sum != 100){
+			document.getElementById("alertBox").style.display='block';
+			document.getElementById("submitForm").disabled = true;
+		}
+		
+		else {
+			document.getElementById("submitForm").disabled = false;
+			document.getElementById("alertBox").style.display='none';
+		}
+	
+
+	}
 	
 	
 	$(document).ready(function(){

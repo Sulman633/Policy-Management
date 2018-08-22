@@ -25,7 +25,7 @@
 					  <div class="form-group">
 					    <label for="PolicyName">Policy Name:</label>
 	
-					    <input required type="text" class="form-control" id="PolicyName" name="Pname" 
+					    <input onblur="checkValidation()" required type="text" class="form-control" id="PolicyName" name="Pname" 
 					    value="${policyDetails[0]}">
 					  </div>			  
 					  <div class="form-group">
@@ -97,12 +97,25 @@
 				 </div>
 				 
 				 <div class="col-md-2"></div>
-				 
 
+        <!-- /#page-content-wrapper -->
 </t:genericpage>
 
 <script>
-
+	//Validation
+	function checkValidation(){
+	    var name = document.getElementById('PolicyName').value;
+	
+	    if(/[^a-zA-Z0-9]/.test(name)){
+	    	alert('Policy Name cannot contain special characters');
+	    	document.getElementById("submitForm").disabled = true;
+	    }
+	    
+	    else {
+	    	document.getElementById("submitForm").disabled = false;
+	    }
+	}
+  
 	$(document).ready(function(){
 
 	    $("#updatePolicyForm").submit(function(e){
@@ -127,15 +140,8 @@
 	   
 	    });
 	    
-
 	    $("#selectPolicy").submit(function(e){
 	    	
-	    	// Validation
-		    var name = document.getElementById('PolicyName').value;
-
-		    if(/[^a-zA-Z0-9]/.test(name)){
-		    	alert('Policy Name cannot contain special characters');
-		    }
 		    
 	    	e.preventDefault();
 	    	$.ajax(
