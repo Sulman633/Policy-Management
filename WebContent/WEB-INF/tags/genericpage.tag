@@ -29,7 +29,7 @@
 <link href="/PolicyManagement/custom.css" rel="stylesheet">
 <title>Fast Track Policy & Claims Service</title>
 </head>
-<body>
+<body style="background-image:url('https://vignette.wikia.nocookie.net/ssb/images/9/9a/Troll-face.jpg/revision/latest?cb=20141224201503');">
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 	  <a class="navbar-brand" href="/PolicyManagement/index.jsp">Fast Track Claim And Policy Service</a>
