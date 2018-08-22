@@ -84,8 +84,6 @@
 
 <script>
 	// Logic on submit button must be implemented later!!!
-	
-	/*
 	$(document).ready(function(){
 	    $("#createPolicy").submit(function(e){
 	    	
@@ -94,7 +92,7 @@
 	    	$.ajax(
 	                {
 	                    type: "get",
-	                    url: "/PolicyManagement/Servlet", //Your full URL goes here
+	                    url: "/PolicyManagement/MainServlet", //Your full URL goes here
 	                  	data: $("#createPolicy").serialize(),
 	                  	
 	                    success: function(data, textStatus, jqXHR){
@@ -108,5 +106,5 @@
 	        });
 
 	    });
-	});*/
+	});
 </script>

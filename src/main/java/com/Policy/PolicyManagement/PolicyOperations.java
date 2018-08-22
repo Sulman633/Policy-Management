@@ -36,6 +36,35 @@ public class PolicyOperations {
 		return policyNames;
 	}
 	
+		//Get all Policy information 
+		//created by Sulman
+		public ArrayList<String> getPolicyDetails(String policyName) throws SQLException {
+			ArrayList<String> policyDetails = new ArrayList<String>();
+			
+			try {
+				con.connect();
+				pstmt = con.getCon().prepareStatement("SELECT policy_name, number_nominees, policy_type, tenure, sum_assured, pre_reqs FROM POLICIES WHERE policy_name=?");
+				pstmt.setString(1, policyName);
+				
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					 policyDetails.add(rs.getString("policy_name"));
+					 policyDetails.add(rs.getString("number_nominees"));
+					 policyDetails.add(rs.getString("policy_type"));
+					 policyDetails.add(rs.getString("tenure"));
+					 policyDetails.add(rs.getString("sum_assured"));
+					 policyDetails.add(rs.getString("pre_reqs"));
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				rs.close();
+				pstmt.close();
+				con.closeConnection();
+			}
+			return policyDetails;
+		}
+	
 	public void createPolicy(String ptype, String pname, int nNom, int pten, int sumA, String prereq) throws SQLException
     {
 		try {
@@ -48,8 +77,9 @@ public class PolicyOperations {
 			pstmt.setInt(4, pten);
 			pstmt.setInt(5, sumA);
 			pstmt.setString(6, prereq);
-			pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 	        System.out.println("executed query"); 
+	        
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}finally {
@@ -58,20 +88,25 @@ public class PolicyOperations {
 		}
     }	
 	
-	public void updatePolicy(String policyType, String policyName, int numberOfNominees, int tenure, int sumAssured, String prerequisites) throws SQLException {
+	public void updatePolicy( String oldPolicyName, String policyName, int numberOfNominees, String policyType, double tenure, double sumAssured, String prerequisites) throws SQLException {
+		if(!policyName.equals("")) {
 			try {
-				con.connect();
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			pstmt = con.getCon().prepareStatement("UPDATE INTO POLICIES(policy_type, policy_name, number_nominees, tenure, sum_assured, pre_reqs)"
-					+ "VALUES(?,?,?,?,?,?)");
-			pstmt.setString(1, policyType);
-			pstmt.setString(2, policyName);
-			pstmt.setInt(3, numberOfNominees);
-			pstmt.setInt(4, tenure);
-			pstmt.setInt(5, sumAssured);
-			pstmt.setString(6, prerequisites);			
+					con.connect();
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+				pstmt = con.getCon().prepareStatement("UPDATE POLICIES SET policy_name=?, number_nominees=?, policy_type=?, tenure=?, sum_assured=?, pre_reqs=? WHERE policy_name=?");
+				pstmt.setString(1, policyName);
+				pstmt.setInt(2, numberOfNominees);
+				pstmt.setString(3, policyType);
+				pstmt.setDouble(4, tenure);
+				pstmt.setDouble(5, sumAssured);
+				pstmt.setString(6, prerequisites);		
+				pstmt.setString(7, oldPolicyName);
+				pstmt.executeUpdate();
+				System.out.println("Updated row!");
+		}	
+			
 	}
 	
 	public void deletePolicy(String p_id) throws SQLException

@@ -1,6 +1,6 @@
 package com.Policy.PolicyManagement;
-
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 /**
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/MainServlet")
 public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	HttpSession sess ;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -32,31 +33,64 @@ public class MainServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		String route = request.getParameter("formName");
-		
-		System.out.println(route);
-
-		
-		//delete policy logic
-		if(route.equals("deletePolicy"))
-		{
-			try
-			{
-				PolicyOperations po = new PolicyOperations();
+		sess = request.getSession(true);
+		response.setContentType("text/html;charset=UTF-8");
+	    PolicyOperations p = new PolicyOperations();
+	    
+	   
+	    
+		//update policy logic 
+		// by Sulman
+		if(request.getParameter("SelectPolicySubmit") != null) {
+			
+			try {
+				System.out.println(request.getParameter("selectPolicyInput"));
+				ArrayList<String> policyDetails = p.getPolicyDetails(request.getParameter("selectPolicyInput"));
 				
-				System.out.println(request.getParameter("policyID"));
+				for(int i=0; i< policyDetails.size(); i++) {
+					System.out.println(policyDetails.get(i));
+				}
+				sess.setAttribute("policyDetails", policyDetails);
 				
-				po.deletePolicy(request.getParameter("policyID"));
-				
-				response.sendRedirect("delete_policy.jsp");
-			}
-			catch (SQLException e)
-			{
-				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
+		
+		if(request.getParameter("UpdatePolicySubmit") != null) {
+			ArrayList<String> arr = (ArrayList<String>) sess.getAttribute("policyDetails"); 
+			
+			try {
+				p.updatePolicy(arr.get(0), request.getParameter("Pname"), Integer.parseInt(request.getParameter("Nominees")), request.getParameter("typeRadio"), 
+						Double.parseDouble(request.getParameter("tenureRadio")), 
+						Double.parseDouble(request.getParameter("SumAssured")), request.getParameter("Prerequisites"));
+				
+			} catch (NumberFormatException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		String route = request.getParameter("formName");
+		//delete policy logic
+//		if(route.equals("deletePolicy"))
+//		{
+//			try
+//			{
+//				PolicyOperations po = new PolicyOperations();
+//				
+//				System.out.println(request.getParameter("policyID"));
+//				
+//				po.deletePolicy(request.getParameter("policyID"));
+//				
+//				response.sendRedirect("delete_policy.jsp");
+//			}
+//			catch (SQLException e)
+//			{
+//				
+//			}
+//		}
 		
 		
 		/*
@@ -88,20 +122,11 @@ public class MainServlet extends HttpServlet {
 		
 		*/
 		//Create object to run policy operations
-		PolicyOperations p = new PolicyOperations();
 		
-		if(request.getParameter("selectPolicySubmit") != null) {
-			/*
-			 * 			try {
-				ArrayList<String> policyNames = p.getAllPolicyNames();
-				request.setAttribute("policynames", arg1);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			 */
-		}
+	
 
 		if(request.getParameter("createSubmit") != null) {
+			System.out.println("here");
 			String policyName = request.getParameter("Pname");
 			String nominees = request.getParameter("Nominees");
 			String typePolicy = request.getParameter("typeRadio");
