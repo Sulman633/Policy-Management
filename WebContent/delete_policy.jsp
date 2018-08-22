@@ -42,7 +42,7 @@
 						    <label for="exampleFormControlSelect1">Policy</label>
 						    <select class="form-control" id="policyName" name="policyName">
 						      <c:forEach items="${policynames}" var="policy">
-								<option value=<c:out value="${policy}"/>><c:out value="${policy}"/></option>
+								<option value="${policy}">${policy}</option>
 							 </c:forEach>
 						    </select>
 						 </div>

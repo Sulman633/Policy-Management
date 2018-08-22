@@ -110,7 +110,6 @@ public class MainServlet extends HttpServlet {
 				
 				if(x)
 				{
-					System.out.println("im here");
 					p.deletePolicy(request.getParameter("policyName"));
 					
 					response.sendRedirect("delete_policy.jsp");

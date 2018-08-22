@@ -297,7 +297,6 @@ public class PolicyOperations {
 				e.printStackTrace();
 			}
 			
-			System.out.println("xcuted qry");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}finally {

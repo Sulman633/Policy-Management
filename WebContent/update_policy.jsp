@@ -11,7 +11,6 @@
 %>
 
 
-
 <t:genericpage userType="admin"> 
 		<div class="col-md-2"></div>
             	
@@ -33,12 +32,12 @@
 					    <input value="${policyDetails[1]}" type="number" min="1" max="10" class="form-control" name="Nominees" step="1" id="NumberNominees" pattern="\d+" required>
 					  </div>	  
 					  
-					    <div class="form-check form-check-inline">
-					  	  <label for="Tenure">Type of Policy:</label></br>
-	
+					  <label for="Tenure">Type of Policy:</label>
+					   
+					  <div class="form-check form-check-inline">
 						  <input class="form-check-input" type="radio" name="typeRadio" id="type1" value="Accidental" ${policyDetails[2] == 'Accidental' ? 'checked' : ''}>
 						  <label class="form-check-label" for="inlineRadio1">Accidental</label>
-						</div>
+					  </div>
 						<div class="form-check form-check-inline">
 						  <input class="form-check-input" type="radio" name="typeRadio" id="type2" value="Whole Life" ${policyDetails[2] == 'Whole Life' ? 'checked' : ''}>
 						  <label class="form-check-label" for="inlineRadio2">Whole Life</label>
@@ -50,9 +49,10 @@
 						<div class="form-check form-check-inline">
 						  <input class="form-check-input" type="radio" name="typeRadio" id="type4" value="Pension" ${policyDetails[2] == 'Pension' ? 'checked' : ''}>
 						  <label class="form-check-label" for="inlineRadio3">Pension</label>
-						</div>			  
+						</div>	
+						<br>
+						<label for="Tenure">Tenure:</label>		  
 					    <div class="form-check form-check-inline">
-					  	  <label for="Tenure">Tenure:</label></br>
 						  <input class="form-check-input" type="radio" name="tenureRadio" id="tenure1" value="4" ${policyDetails[3] == '4' ? 'checked' : ''}>
 						  <label class="form-check-label" for="inlineRadio1">Quarterly</label>
 						</div>

@@ -22,35 +22,24 @@
 		
     <div class="col-md-2"></div>
             	
-            	<div class="col-md-8">
-       
-            <div id="noPolicyUI">
-				<h2>No Policies to update. 
-				Please create a policy before you update it.</h2>
-		    </div>
-		
-		    
-            
-            <div  id="selectPolicyUI">
+   	<div class="col-md-8">
+
+		<form id="selectPolicyForm" class="form-group">
 			<h3>Select policy to update:</h3>
-			<br/>
-			<form id="selectPolicyForm" class="form-group">
 				
-					<input type="hidden" value="selectPolicySubmit" name="SelectPolicySubmit">
-					<select class="form-control" name="selectPolicyInput" id="selectPolicyInput">
-						<c:forEach items="${policynames}" var="policy">
-							<option value="${policy}">${policy}</option>
-						</c:forEach>
-					</select>
-					<br/>
-				<input type="submit" value="Enter" class="btn btn-primary">
+			<input type="hidden" value="selectPolicySubmit" name="SelectPolicySubmit">
+				<select class="form-control" name="selectPolicyInput" id="selectPolicyInput">
+					<c:forEach items="${policynames}" var="policy">
+						<option value="${policy}">${policy}</option>
+					</c:forEach>
+				</select>
+				<br/>
+			<input type="submit" value="Enter" class="btn btn-primary">
 				
-			</form>
-		    </div>
-		</div>
+		</form>
+	</div>
 	<div class="col-md-2"></div>			
-         
-       
+            
 </t:genericpage>
 
 <script>
