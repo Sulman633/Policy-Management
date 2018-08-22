@@ -5,63 +5,52 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.Policy.PolicyManagement.PolicyOperations"%>
 
-<link href="/PolicyManagement/sidebar.css" rel="stylesheet">
-
 
 <t:genericpage userType="customer">   
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">                
+                              
+               <div class="col-md-2"></div>
                
-               <div class="row">
-               
-               <div class="col-xs-2"></div>
-               
-               <div class="col-xs-8">
+               <div class="col-md-8">
                
 				
-				<form id="buyPolicy1" style="border:1px solid black; padding:2em ; text-align:center; border-radius: 10px;">
-				
-					<h2>Buy Policy</h2><hr>
+					<form id="buyPolicy1" style="border:1px solid black; padding:2em ; text-align:center; border-radius: 10px;" method="get" action="/PolicyManagement/MainServlet">
 					
-					<div class="form-group">
-					    <label for="policyType">Type of Insurance:</label>
-					    <select class="form-control" id="policyType" name="policyType">
-					      <option value="Accidental">Accidental</option>
-					      <option value="Whole Life">Whole Life</option>
-					      <option value="Term">Term</option>
-					      <option value="Pension Scheme">Pension Scheme</option>
-					    </select>
-					  </div>
-		
-			    	
-			    	<input type="hidden" name="buyPolicy1Submit" value="buyPolicy1Submit">
-			    	
-					<button type="submit" class="btn btn-primary">Submit</button>
-				</form>
+						<h2>Buy Policy</h2><hr>
+						
+						<div class="form-group">
+						    <label for="policyType">Type of Insurance:</label>
+						    <select class="form-control" id="policyType" name="policyType">
+						      <option value="Accidental">Accidental</option>
+						      <option value="Whole Life">Whole Life</option>
+						      <option value="Term">Term</option>
+						      <option value="Pension Scheme">Pension Scheme</option>
+						    </select>
+						  </div>
+			
+				    	
+				    	<input type="hidden" name="buyPolicy1Submit" value="buyPolicy1Submit">
+				    	
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</form>
+					
+									 <!-- Success/Error alerts -->
+	                <div id="success" class="alert alert-success alert-dismissible" role="alert" hidden>
+					  Successfully created policy!
+					  	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    					<span aria-hidden="true">&times;</span>
+	 					</button>
+					</div>
+					<div id="error" class="alert alert-danger alert-dismissible" role="alert" hidden>
+					  Error in creating policy.
+					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						    <span aria-hidden="true">&times;</span>
+					  </button>
+					</div>
 				
 				</div>
 				
-				<div class="col-xs-2"></div>
+				<div class="col-md-2"></div>
 				
-				</div>
-				
-				 <!-- Success/Error alerts -->
-                <div id="success" class="alert alert-success alert-dismissible" role="alert" hidden>
-				  Successfully created policy!
-				  	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    					<span aria-hidden="true">&times;</span>
- 					</button>
-				</div>
-				<div id="error" class="alert alert-danger alert-dismissible" role="alert" hidden>
-				  Error in creating policy.
-				  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					    <span aria-hidden="true">&times;</span>
-				  </button>
-				</div>
-            </div>
-        </div>
-        <!-- /#page-content-wrapper -->
 </t:genericpage>
 
 <script>
@@ -70,7 +59,7 @@
 	
 	$(document).ready(function(){	
 		// Submit functionality
-	    $("#buyPolicy1").submit(function(e){
+	 /*   $("#buyPolicy1").submit(function(e){
 	    		    	
 	    	$.ajax(
 	                {
@@ -81,12 +70,12 @@
 	                    success: function(data, textStatus, jqXHR){
 	                    	window.location.replace("buy_policy.jsp");      
 	                    },
-	                    error: function(jqXHR,thrownError){
-	                    	alert(thrownError);
+	                    error: function(jqXHR,textStatus, thrownError){
+	                    	window.location.replace("buy_policy.jsp");
 	                   }
 	                });
 
-	    });		
+	    });		*/
 
 	});
 </script>

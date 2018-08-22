@@ -1,6 +1,7 @@
 package com.Policy.PolicyManagement;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -82,18 +83,84 @@ public class MainServlet extends HttpServlet {
 		else if (request.getParameter("buyPolicy1Submit") != null)
 		{
 			
-			System.out.println("hi");
-
 			try
 			{
 				ArrayList<String> pnames = null;
 				
 				pnames = p.getPoliciesByType(request.getParameter("policyType"));
 				
-				System.out.println("back");
 				sess.setAttribute("policynames", pnames);
-				System.out.println("sack");
 				
+				sess.setAttribute("policyType", request.getParameter("policyType"));
+								
+				response.sendRedirect("buy_policy2.jsp");
+			}
+			catch( SQLException e)
+			{
+			}
+		}
+		else if (request.getParameter("buyPolicy2Submit") != null)
+		{
+			try 
+			{
+				int number = p.getNumNomineesOfPolicy(request.getParameter("policyName"));
+				
+				sess.setAttribute("number", number);
+				
+				sess.setAttribute("policy", request.getParameter("policyName"));
+				
+				sess.setAttribute("type", request.getAttribute("policy_type"));
+				
+				response.sendRedirect("buy_policy.jsp");
+
+			}
+			catch(SQLException e)
+			{
+			}
+		}
+		else if (request.getParameter("buyPolicySubmit") != null)
+		{
+			try
+			{
+				String policyName = request.getParameter("policy");
+				
+				int number = Integer.parseInt(request.getParameter("numNominees"));
+				
+				String[] nominees = new String[number];
+				String[] relationship = new String[number];
+				String[] percentage = new String[number];
+				
+				for(int i=0; i< number; i++)
+				{
+					nominees[i] = request.getParameter("nominee" + Integer.toString(i+1));
+				}
+				
+				for(int i=0; i< number; i++)
+				{
+					relationship[i] = request.getParameter("relationship" + Integer.toString(i+1));
+				}
+				
+				for(int i=0; i< number; i++)
+				{
+					percentage[i] = request.getParameter("percentage" + Integer.toString(i+1));
+				}
+				
+		        int premium_rate = Integer.parseInt( request.getParameter("premiumRateRadio"));
+		        int premium_amount = Integer.parseInt( request.getParameter("amount"));
+		        String birthCert = request.getParameter("birthcertificate");
+		        String pancard = request.getParameter("pancard");
+		        int agentID = Integer.parseInt(request.getParameter("agentID"));
+		        int customerID = Integer.parseInt(request.getParameter("customerID"));
+		        Date date = (Date) Date.valueOf(request.getParameter("policyDate"));
+		        String medical_details = request.getParameter("medDetails");
+		       // String type = request.getParameter("type");
+		        p.buyPolicy(policyName, customerID, agentID, date, premium_rate, premium_amount, medical_details);
+
+			}
+			catch ( SQLException e)
+			{
+			}
+		}
 				/*
 				
 				if(request.getParameter("nominee") == null)
@@ -125,13 +192,6 @@ public class MainServlet extends HttpServlet {
 				
 			        response.sendRedirect("buy_policy.jsp");
 				}*/
-			}
-			catch (SQLException e)
-			{
-				
-			}
-		}
-		
 		else if(request.getParameter("generateCertificateSubmit")!=null)
 	       {
 	           HttpSession session = request.getSession();
@@ -209,14 +269,5 @@ public class MainServlet extends HttpServlet {
 			 */
 		}
 
-		if(request.getParameter("createSubmit") != null) {
-			String policyName = request.getParameter("Pname");
-			String nominees = request.getParameter("Nominees");
-			String typePolicy = request.getParameter("typeRadio");
-			String tenure = request.getParameter("tenureRadio");
-			String sumAssured = request.getParameter("SumAssured");
-			String prereq = request.getParameter("Prerequisites");
-			//p.createPolicy(typePolicy, typePolicy, nominees, tenure, sumAssured, prereq);
-		}
 	}
 }
