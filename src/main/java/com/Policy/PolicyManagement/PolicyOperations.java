@@ -300,12 +300,12 @@ public class PolicyOperations {
 	}	
 	
 
-	public int getPolicyID() throws SQLException
+	public int getPolicyMapID() throws SQLException
 	{
 		int policyID =0;
 		try {
 			con.connect();
-			pstmt = con.getCon().prepareStatement("select MAX(POLICY_ID) from POLICIES");
+			pstmt = con.getCon().prepareStatement("select MAX(POLICY_MAP_ID) from PolicyMap");
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				policyID = rs.getInt(1);

@@ -36,7 +36,6 @@ public class MainServlet extends HttpServlet {
 		sess = request.getSession(true);
 		
 		PolicyOperations p = new PolicyOperations();
-		NomineeOperations n = new NomineeOperations();
 		
 		//create policy logic
 		if(request.getParameter("createPolicySubmit") != null)
@@ -157,20 +156,21 @@ public class MainServlet extends HttpServlet {
 		       // String type = request.getParameter("type");
 		        p.buyPolicy(policyName, customerID, agentID, date, premium_rate, premium_amount, medical_details);
 		        
-		        int policyID = p.getPolicyID();
+		        int policyID = p.getPolicyMapID();
 	
 		        //create nominees 
+		        
 		        for (int i=0; i<nominees.length;i++)
 		        {
-		    		try {
-						Nominee newNominee = new Nominee(nominees[i],relationship[i],"null",Double.parseDouble(percentage[i]));
-						n.insertNewNominee(newNominee);
-						int nomineeID = n.getNomineeID();
-						n.insertNewNomineeMap(nomineeID, policyID);
-		    	        System.out.println("executed query"); 
-		    		}finally {
-		    			
-		    		}
+		        	System.out.println("array loop: "+i);
+		        	NomineeOperations n = new NomineeOperations();
+					Nominee newNominee = new Nominee(nominees[i],relationship[i],"null",Double.parseDouble(percentage[i]));
+					n.insertNewNominee(newNominee);
+					int nomineeID = n.getNomineeID();
+					System.out.println("New nominee ID is: "+nomineeID);
+					System.out.println("New policy ID is: "+policyID);
+					n.insertNewNomineeMap(nomineeID, policyID);
+	    	        System.out.println("executed query"); 
 		        }
 
 
@@ -289,11 +289,12 @@ public class MainServlet extends HttpServlet {
 				
 		//Create and Map Nominee
 		if(request.getParameter("newNomineeSubmit") != null) {
+			NomineeOperations n = new NomineeOperations();
 			Nominee newNominee = new Nominee(request.getParameter("NomineeName"), request.getParameter("RelationshipToCustomer"),request.getParameter("PurposeOfChange"),Double.parseDouble(request.getParameter("Percentage")));
 			try {
 				n.insertNewNominee(newNominee);
 				int nomineeID = n.getNomineeID();
-				n.insertNewNomineeMap(nomineeID, Integer.parseInt(request.getParameter("policyID")));
+				n.insertNewNomineeMap(nomineeID, 1);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
