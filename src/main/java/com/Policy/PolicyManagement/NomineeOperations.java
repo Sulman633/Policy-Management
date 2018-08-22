@@ -45,8 +45,8 @@ public class NomineeOperations {
 			con.connect();
 			pstmt = con.getCon().prepareStatement("INSERT INTO NOMINEEMAP(NOMINEE_MAP_ID,POLICY_MAP_ID,NOMINEE_ID) VALUES(nomineeMap_seq.nextval,?,?)");
 			//pstmt.setString(1, n.getNominee_ID());
-			pstmt.setInt(1,nomineeID);
-			pstmt.setInt(2,policyID);
+			pstmt.setInt(1,policyID);
+			pstmt.setInt(2,nomineeID);
 			pstmt.executeQuery();
 	        System.out.println("executed query"); 
 		} catch (ClassNotFoundException e) {
