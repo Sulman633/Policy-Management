@@ -182,6 +182,14 @@
 		success nofication 
 		*/
 	    $("#selectPolicy").submit(function(e){
+	    	
+	    	// Validation
+		    var name = document.getElementById('PolicyName').value;
+
+		    if(/[^a-zA-Z0-9]/.test(name)){
+		    	alert('Policy Name cannot contain special characters');
+		    }
+		    
 	    	e.preventDefault();
 	    	$.ajax(
 	                {
