@@ -3,6 +3,4 @@
 
 <t:genericpage userType="customer">   
 
-		<h1>Customer Logged in</h1>
-
 </t:genericpage>

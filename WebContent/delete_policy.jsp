@@ -5,7 +5,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.Policy.PolicyManagement.PolicyOperations"%>
 
-<link href="/PolicyManagement/sidebar.css" rel="stylesheet">
 
 <% 
 	PolicyOperations p = new PolicyOperations();
@@ -30,57 +29,47 @@
 
 <t:genericpage userType="admin"> 
 
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid"> 
-           
-           <div class="row">
+                       	
+            	<div class="col-md-2"></div>
             	
-            	<div class="col-xs-2"></div>
+            	<div class="col-md-8">
             	
-            	<div class="col-xs-8">
-            	
-            	<div id="noPolicyUI" hidden>
-					<h2>No Policies to delete. Please create a policy before you delete it.</h2>
-		    	</div>
+	            	<div id="noPolicyUI" hidden>
+						<h2>No Policies to delete. Please create a policy before you delete it.</h2>
+			    	</div>
 		    
-            <div id="deletePolicyUI">
-                           
-			<form id="deletePolicy" style="border:1px solid black; padding:2em ; text-align:center; border-radius: 10px;">
-				<h2>Delete Policy</h2><hr>
-				<div class="form-group">
-				    <label for="exampleFormControlSelect1">Policy</label>
-				    <select class="form-control" id="policyName" name="policyName">
-				      <c:forEach items="${policynames}" var="policy">
-						<option value=<c:out value="${policy}"/>><c:out value="${policy}"/></option>
-					 </c:forEach>
-				    </select>
-				 </div>
-				 <input type="hidden" name="deletePolicySubmit" value="deletePolicySubmit">
-				 <button type="submit" class="btn btn-danger"> Submit</button>
-			</form>
-			</div>
-			<div class="col-xs-2"></div>
-			</div>
-		    </div>
-
-			 <!-- Success Notification -->
-             <div id="success" class="alert alert-success alert-dismissible" role="alert" hidden>
-			  Successfully deleted policy!
-			  	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-   					<span aria-hidden="true">&times;</span>
-					</button>
-			 </div>
-			 <!-- Error Notification -->
-			 <div id="error" class="alert alert-danger alert-dismissible" role="alert" hidden>
-			  Error in creating policy.
-			  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				    <span aria-hidden="true">&times;</span>
-			  </button>
-			 </div>
+		            <div id="deletePolicyUI">
+		                           
+						<form id="deletePolicy" style="border:1px solid black; padding:2em ; text-align:center; border-radius: 10px;">
+							<h2>Delete Policy</h2><hr>
+							<div class="form-group">
+							    <label for="exampleFormControlSelect1">Policy</label>
+							    <select class="form-control" id="policyName" name="policyName">
+							      <c:forEach items="${policynames}" var="policy">
+									<option value=<c:out value="${policy}"/>><c:out value="${policy}"/></option>
+								 </c:forEach>
+							    </select>
+							 </div>
+							 <input type="hidden" name="deletePolicySubmit" value="deletePolicySubmit">
+							 <button type="submit" class="btn btn-danger"> Submit</button>
+						</form>
+					</div>
+					<!-- Success Notification -->
+		             <div id="success" class="alert alert-success alert-dismissible" role="alert" hidden>
+					  Successfully deleted policy!
+					  	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		   					<span aria-hidden="true">&times;</span>
+							</button>
+					 </div>
+					 <!-- Error Notification -->
+					 <div id="error" class="alert alert-danger alert-dismissible" role="alert" hidden>
+					  Error in creating policy.
+					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						    <span aria-hidden="true">&times;</span>
+					  </button>
+					 </div>
 				</div>
-			
-        </div>
+				<div class="col-md-2"></div>
         <!-- /#page-content-wrapper -->
 </t:genericpage>
 
