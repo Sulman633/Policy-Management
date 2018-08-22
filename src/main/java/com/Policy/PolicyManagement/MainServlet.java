@@ -1,6 +1,7 @@
 package com.Policy.PolicyManagement;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -150,12 +151,10 @@ public class MainServlet extends HttpServlet {
 		        String pancard = request.getParameter("pancard");
 		        int agentID = Integer.parseInt(request.getParameter("agentID"));
 		        int customerID = Integer.parseInt(request.getParameter("customerID"));
-		        String date = request.getParameter("policyDate");
+		        Date date = (Date) Date.valueOf(request.getParameter("policyDate"));
 		        String medical_details = request.getParameter("medDetails");
-		        String type = request.getParameter("type");
-		        
-		        p.buyPolicy(policyName, customerID, agentID, date, premium_rate,premium_amount,medical_details);
-		        
+		       // String type = request.getParameter("type");
+		        p.buyPolicy(policyName, customerID, agentID, date, premium_rate, premium_amount, medical_details);
 
 			}
 			catch ( SQLException e)
@@ -270,14 +269,5 @@ public class MainServlet extends HttpServlet {
 			 */
 		}
 
-		if(request.getParameter("createSubmit") != null) {
-			String policyName = request.getParameter("Pname");
-			String nominees = request.getParameter("Nominees");
-			String typePolicy = request.getParameter("typeRadio");
-			String tenure = request.getParameter("tenureRadio");
-			String sumAssured = request.getParameter("SumAssured");
-			String prereq = request.getParameter("Prerequisites");
-			//p.createPolicy(typePolicy, typePolicy, nominees, tenure, sumAssured, prereq);
-		}
 	}
 }
