@@ -36,6 +36,7 @@ public class MainServlet extends HttpServlet {
 		sess = request.getSession(true);
 		
 		PolicyOperations p = new PolicyOperations();
+		NomineeOperations n = new NomineeOperations();
 		
 		//create policy logic
 		if(request.getParameter("createPolicySubmit") != null)
@@ -155,6 +156,23 @@ public class MainServlet extends HttpServlet {
 		        String medical_details = request.getParameter("medDetails");
 		       // String type = request.getParameter("type");
 		        p.buyPolicy(policyName, customerID, agentID, date, premium_rate, premium_amount, medical_details);
+		        
+		        int policyID = p.getPolicyID();
+	
+		        //create nominees 
+		        for (int i=0; i<nominees.length;i++)
+		        {
+		    		try {
+						Nominee newNominee = new Nominee(nominees[i],relationship[i],"null",Double.parseDouble(percentage[i]));
+						n.insertNewNominee(newNominee);
+						int nomineeID = n.getNomineeID();
+						n.insertNewNomineeMap(nomineeID, policyID);
+		    	        System.out.println("executed query"); 
+		    		}finally {
+		    			
+		    		}
+		        }
+
 
 			}
 			catch ( SQLException e)
@@ -268,6 +286,20 @@ public class MainServlet extends HttpServlet {
 			}
 			 */
 		}
+				
+		//Create and Map Nominee
+		if(request.getParameter("newNomineeSubmit") != null) {
+			Nominee newNominee = new Nominee(request.getParameter("NomineeName"), request.getParameter("RelationshipToCustomer"),request.getParameter("PurposeOfChange"),Double.parseDouble(request.getParameter("Percentage")));
+			try {
+				n.insertNewNominee(newNominee);
+				int nomineeID = n.getNomineeID();
+				n.insertNewNomineeMap(nomineeID, Integer.parseInt(request.getParameter("policyID")));
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 
 	}
 }

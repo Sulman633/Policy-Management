@@ -299,5 +299,26 @@ public class PolicyOperations {
 		return policyNames;
 	}	
 	
+
+	public int getPolicyID() throws SQLException
+	{
+		int policyID =0;
+		try {
+			con.connect();
+			pstmt = con.getCon().prepareStatement("select MAX(POLICY_ID) from POLICIES");
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				policyID = rs.getInt(1);
+			}
+	        System.out.println("executed query"); 
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}finally {
+			rs.close();
+			pstmt.close();
+			con.closeConnection();
+		}
+		return policyID;
+	}		
 	
 }
