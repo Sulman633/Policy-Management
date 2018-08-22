@@ -3,6 +3,7 @@ package com.Policy.PolicyManagement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -37,6 +38,7 @@ public class PolicyOperations {
 	}
 	
 
+
 		//Get all Policy information 
 		//created by Sulman
 		public ArrayList<String> getPolicyDetails(String policyName) throws SQLException {
@@ -66,15 +68,17 @@ public class PolicyOperations {
 			return policyDetails;
 		}
 
-	public String getPolicyID(String name) throws SQLException {
-		String policy_id = "";
+	
+	public int getPolicyID(String name) throws SQLException {
+		int policy_id = 0;
+
 		try {
 			con.connect();
 			pstmt = con.getCon().prepareStatement("SELECT POLICY_ID FROM POLICIES WHERE POLICY_NAME=?");
 			pstmt.setString(1, name);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				policy_id = rs.getString(1);
+				policy_id = rs.getInt(1);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -237,22 +241,22 @@ public class PolicyOperations {
 		}
     }
 	
-	public void buyPolicy(String policyName, int customerID, int agentID, String date, int premium_rate,double premium_amount, String medical_details) throws SQLException
+	public void buyPolicy(String policyName, int customerID, int agentID, Date date, int premium_rate,double premium_amount, String medical_details) throws SQLException
     {
 		try {
 			
 			System.out.println("im here");
-			String policy_id = getPolicyID(policyName);
+			int policy_id = getPolicyID(policyName);
 			
 			con.connect();
 			System.out.println("connected");
 			pstmt = con.getCon().prepareStatement("INSERT INTO POLICYMAP(policy_map_id,customer_id,policy_id, "
 					+ "agent_id, start_date, payments_per_year, premium_amount, medical_details, is_active,approved)"
                     + "VALUES(policymap_seq.nextval,?,?,?,?,?,?,?,?,?)");
-			pstmt.setString(2, policy_id);
+			pstmt.setInt(2, policy_id);
 			pstmt.setInt(1, customerID);
 			pstmt.setInt(3, agentID);
-			pstmt.setString(4,date);
+			pstmt.setDate(4,date);
 			pstmt.setInt(5,premium_rate);
 			pstmt.setDouble(6,premium_amount);
 			pstmt.setString(7, medical_details);

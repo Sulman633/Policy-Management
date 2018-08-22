@@ -4,10 +4,9 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.Policy.PolicyManagement.PolicyOperations"%>
 
-<link href="/PolicyManagement/sidebar.css" rel="stylesheet">
 
 
-<!-- Written by Khalid / Sulman -->
+<!-- Written by Sulman -->
 <%
 	PolicyOperations p = new PolicyOperations();
 	ArrayList<String> al = null;
@@ -21,53 +20,43 @@
 
 <t:genericpage userType="Admin"> 
 		
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">   
-            
-            
-            <!-- UI 1/3 -->
+    <div class="col-md-2"></div>
+            	
+            	<div class="col-md-8">
+       
             <div id="noPolicyUI">
 				<h2>No Policies to update. 
 				Please create a policy before you update it.</h2>
 		    </div>
 		
-		    <!-- UI 2/3 -->
+		    
             
-            <div id="selectPolicyUI">
-			<h3>dynamically update form</h3>
-			<form id="selectPolicyForm">
-				<select name="selectPolicyInput" id="selectPolicyInput">
-					<c:forEach items="${policynames}" var="policy">
-						<option value="${policy}">${policy}</option>
-					</c:forEach>
-				</select>
-				<input type="hidden" value="selectPolicySubmit" name="SelectPolicySubmit">
-				<input type="submit" value="Enter" >
+            <div  id="selectPolicyUI">
+			<h3>Select policy to update:</h3>
+			<br/>
+			<form id="selectPolicyForm" class="form-group">
+				
+					<input type="hidden" value="selectPolicySubmit" name="SelectPolicySubmit">
+					<select class="form-control" name="selectPolicyInput" id="selectPolicyInput">
+						<c:forEach items="${policynames}" var="policy">
+							<option value="${policy}">${policy}</option>
+						</c:forEach>
+					</select>
+					<br/>
+				<input type="submit" value="Enter" class="btn btn-primary">
 				
 			</form>
 		    </div>
-		   					
-            </div>
-        </div>
-        <!-- /#page-content-wrapper -->
+		</div>
+	<div class="col-md-2"></div>			
+         
+       
 </t:genericpage>
 
 <script>
-	// Logic on submit button must be implemented later!!!
+
 	$(document).ready(function(){
-		var queryCount = 1;//query 1, return all policies from DB
 		
-		if (queryCount <= 0){
-			$("#noPolicyUI").show();
-			$("#selectPolicyUI").hide();
-			$("#updatePolicyUI").hide();			
-		}
-		else {
-			$("#noPolicyUI").hide();
-			$("#selectPolicyUI").show(); //update List dynamically 
-			$("#updatePolicyUI").hide();			
-		}
 	    $("#selectPolicyForm").submit(function(e){
 	    	$.ajax(
 	                {
@@ -86,8 +75,7 @@
 	        });
 	    	e.preventDefault();
 	
-	    });
-	        
+	    });       
 
 	});
 	

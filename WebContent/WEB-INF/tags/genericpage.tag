@@ -157,15 +157,11 @@ function displayMap() {
                         var widget = show(data);
                         $("#show").html(widget);
                         $("#city").val('');
-                        console.log(data);
+                       
                     }
             
-            
         });
-		
-		
-	    
-	    
+		   
     });
 	      
 	</script>

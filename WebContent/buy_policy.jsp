@@ -18,7 +18,7 @@
                
                <div class="col-md-8">
 				
-				   <form id="buyPolicy" style="border:1px solid black; padding:2em ; text-align:center; border-radius: 10px;" method="get" action="/PolicyManagement/MainServlet">
+				   <form id="buyPolicy" style="border:1px solid black; padding:2em ; text-align:center; border-radius: 10px;">
 					
 						<h2>Buy Policy</h2><hr><br>
 						  
@@ -170,7 +170,7 @@
 		}
 		
 		// Submit functionality
-	    /*$("#buyPolicy").submit(function(e){
+	    $("#buyPolicy").submit(function(e){
 	    	
 	    	e.preventDefault();
 	    	
@@ -189,6 +189,6 @@
 	                   }
 	                });
 
-	    });*/
+	    });
 	});
 </script>
