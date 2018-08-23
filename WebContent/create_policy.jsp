@@ -93,7 +93,7 @@
 	    var name = document.getElementById('PolicyName').value;
 	    var prereq = document.getElementById('Prerequisites').value;
 	
-	    if(/[^a-zA-Z0-9]/.test(name)){
+	    if((/[^a-zA-Z]/g, "").test(name)){
 	    	alert('Policy Name cannot contain special characters');
 	    	document.getElementById("submitForm").disabled = true;
 	    }

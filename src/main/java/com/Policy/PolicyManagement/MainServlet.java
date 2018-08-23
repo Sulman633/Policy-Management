@@ -201,24 +201,36 @@ public class MainServlet extends HttpServlet {
 		        Date date = (Date) Date.valueOf(request.getParameter("policyDate"));
 		        String medical_details = request.getParameter("medDetails");
 		       // String type = request.getParameter("type");
-		        p.buyPolicy(policyName, customerID, agentID, date, premium_rate, premium_amount, medical_details);
+		        System.out.println("buying policy");
+		        boolean success = p.buyPolicy(policyName, customerID, agentID, date, premium_rate, premium_amount, medical_details);
 		        
-		        int policyID = p.getPolicyMapID();
-	
-		        //create nominees 
-		        
-		        for (int i=0; i<nominees.length;i++)
+		        if(success)
 		        {
-		        	System.out.println("array loop: "+i);
-		        	NomineeOperations n = new NomineeOperations();
-					Nominee newNominee = new Nominee(nominees[i],relationship[i],"null",Double.parseDouble(percentage[i]));
-					n.insertNewNominee(newNominee);
-					int nomineeID = n.getNomineeID();
-					System.out.println("New nominee ID is: "+nomineeID);
-					System.out.println("New policy ID is: "+policyID);
-					n.insertNewNomineeMap(nomineeID, policyID);
-	    	        System.out.println("executed query"); 
+		        	int policyID = p.getPolicyMapID();
+		        	
+			        //create nominees 
+			        
+			        for (int i=0; i<nominees.length;i++)
+			        {
+			        	System.out.println("array loop: "+i);
+			        	NomineeOperations n = new NomineeOperations();
+						Nominee newNominee = new Nominee(nominees[i],relationship[i],"null",Double.parseDouble(percentage[i]));
+						n.insertNewNominee(newNominee);
+						int nomineeID = n.getNomineeID();
+						System.out.println("New nominee ID is: "+nomineeID);
+						System.out.println("New policy ID is: "+policyID);
+						n.insertNewNomineeMap(nomineeID, policyID);
+		    	        System.out.println("executed query"); 
+			        }
 		        }
+		        
+		        else 
+		        {
+		        	response.sendError(0);
+		        	response.sendRedirect("buy_policy.jsp");
+		        }
+		        
+		        
 
 
 			}
@@ -257,6 +269,38 @@ public class MainServlet extends HttpServlet {
 
 	           response.sendRedirect("generate_policy_certificate.jsp");
 	       }
+		else if(request.getParameter("generateCertificateCustomerSubmit")!=null)
+        {
+            HttpSession session = request.getSession();
+            System.out.println("in generate certificate");
+
+            try {
+                System.out.println(request.getParameter("policyIdCus"));
+            ArrayList<String> pd = p.generateCertificate(request.getParameter("policyIdCus"), "1");
+            System.out.println(pd);
+
+            String polid = pd.get(0);
+            String polname = pd.get(1);
+            String cusid = pd.get(2);
+            String sumass = pd.get(3);
+            String prem = pd.get(4);
+            String ten = pd.get(5);
+
+            session.setAttribute("polid", polid);
+            session.setAttribute("polname", polname);
+            session.setAttribute("cusid", cusid);
+            session.setAttribute("sumass", sumass);
+            session.setAttribute("prem", prem);
+            session.setAttribute("ten", ten);
+
+
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+            response.sendRedirect("generate_policy_certificate.jsp");
+        }
 		//Create and Map Nominee
 		else if(request.getParameter("newNomineeSubmit") != null) {
 			NomineeOperations n = new NomineeOperations();

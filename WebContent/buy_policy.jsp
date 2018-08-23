@@ -37,7 +37,7 @@
 						            </div>
 						            <div class=" col-md-4">
 						                <label for="Percentage" class="control-label">Percentage <c:out value = "${i}"/>:</label>
-						                <input id="percent${i}" type="text" class="form-control" name="percentage<c:out value = "${i}"/>" placeholder="Relationship" onblur="checkPercentage()" required>
+						                <input id="percent${i}" type="text" class="form-control" name="percentage<c:out value = "${i}"/>" placeholder="Percentage" onblur="checkPercentage()" required>
 						            </div>
 						      </div>
 						      <br>
@@ -119,13 +119,13 @@
 					
 					<!-- Success/Error alerts -->
 	                <div id="success" class="alert alert-success alert-dismissible" role="alert" hidden>
-					  Successfully created policy!
+					  Successfully bought policy!
 					  	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 	    					<span aria-hidden="true">&times;</span>
 	 					</button>
 					</div>
 					<div id="error" class="alert alert-danger alert-dismissible" role="alert" hidden>
-					  Error in creating policy.
+					  Error in buying policy.
 					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						    <span aria-hidden="true">&times;</span>
 					  </button>
@@ -220,7 +220,7 @@
 	                    	$("#error").attr("hidden","hidden"); 
 	                    },
 	                    error: function(jqXHR){
-	                    	alert("hi");
+	                    	$("#error").removeAttr("hidden");
 	                   }
 	                });
 

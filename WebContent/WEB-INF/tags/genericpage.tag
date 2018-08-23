@@ -83,6 +83,8 @@
 				          <a class="dropdown-item" href="/PolicyManagement/buy_policy1.jsp">Buy Policy</a>
 				          <a class="dropdown-item" href="/PolicyManagement/update_nominee.jsp">Update Nominee</a>
 				          <a class="dropdown-item" href="/PolicyManagement/view_own_policy.jsp">View Own Policy</a>
+				          <a class="dropdown-item" href="/PolicyManagement/generate_policy_certificate_customer.jsp">Generate Policy Certificate</a>
+				          
 				        </div>
 				    </li>
 		         <%}%>		 

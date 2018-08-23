@@ -268,8 +268,9 @@ public class PolicyOperations {
 		}
     }
 	
-	public void buyPolicy(String policyName, int customerID, int agentID, Date date, int premium_rate,double premium_amount, String medical_details) throws SQLException
+	public boolean buyPolicy(String policyName, int customerID, int agentID, Date date, int premium_rate,double premium_amount, String medical_details) throws SQLException
     {
+		boolean success = true;
 		try {
 			
 			System.out.println("im here");
@@ -294,6 +295,8 @@ public class PolicyOperations {
 			}
 			catch (Exception e)
 			{
+				System.out.println("error");
+				success = false;
 				e.printStackTrace();
 			}
 			
@@ -303,6 +306,8 @@ public class PolicyOperations {
 			pstmt.close();
 			con.closeConnection();
 		}
+		
+		return success;
     }	
 	
 	public void updatePolicy( String oldPolicyName, String policyName, int numberOfNominees, String policyType, double tenure, double sumAssured, String prerequisites) throws SQLException {
@@ -325,6 +330,72 @@ public class PolicyOperations {
 		}	
 			
 	}
+	
+	public boolean cangenerateCertificate(String polId, String colId) throws SQLException
+    {
+        boolean flag = false;
+         try {
+                Connection dbcon = con.connect();
+                pstmt = dbcon.prepareStatement("select POLICYMAP.policy_id, POLICIES.POLICY_NAME, POLICIES.TENURE, POLICYMAP.PREMIUM_AMOUNT, POLICIES.SUM_ASSURED, NOMINEEMAP.NOMINEE_ID "
+                        + "FROM ((POLICYMAP INNER JOIN POLICIES ON POLICYMAP.policy_id = ? AND POLICYMAP.customer_id = ? AND POLICYMAP.policy_id = POLICIES.policy_id)"
+                        + "    INNER JOIN NOMINEEMAP ON POLICYMAP.policy_map_id = NOMINEEMAP.policy_map_id)");
+                pstmt.setString(1, polId);
+                pstmt.setString(2, colId);
+                
+                    rs = pstmt.executeQuery();
+                
+                          
+                
+//                select POLICYMAP.policy_id, POLICIES.POLICY_NAME, POLICIES.TENURE, POLICYMAP.PREMIUM_AMOUNT, POLICIES.SUM_ASSURED, NOMINEEMAP.NOMINEE_ID
+//                FROM ((POLICYMAP
+//                INNER JOIN POLICIES ON POLICYMAP.policy_id = 1 AND POLICYMAP.customer_id = 1 AND POLICYMAP.policy_id = POLICIES.policy_id)
+//                INNER JOIN NOMINEEMAP ON POLICYMAP.policy_map_id = NOMINEEMAP.policy_map_id)
+                
+                while(rs.next())
+                {
+                    
+                    flag = true;
+                }
+                
+                if(flag==false)
+                {
+                    System.out.println("Invalid Mapping");
+                    // return false;
+                    
+                }
+              
+                System.out.println("generated certificate");
+                //System.out.println(results.toString());
+            } catch (Exception e) {
+              
+                e.printStackTrace();
+            }finally {
+                pstmt.close();
+                con.closeConnection();
+            }
+            return flag;
+    }
+
+	public ArrayList<Integer> getAllPolicyIDCustomer() throws SQLException{
+         ArrayList<Integer> policyId = new ArrayList<Integer>();
+            try {
+                con.connect();
+                pstmt = con.getCon().prepareStatement("SELECT POLICY_ID FROM POLICYMAP WHERE CUSTOMER_ID = 1");
+                rs = pstmt.executeQuery();
+                while(rs.next())
+                {
+                    policyId.add(rs.getInt(1));
+                }
+            }catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                rs.close();
+                pstmt.close();
+                con.closeConnection();
+            }
+            System.out.println(policyId);
+            return policyId;
+    }
 	
 	public void deletePolicy(String p_name) throws SQLException
     {
