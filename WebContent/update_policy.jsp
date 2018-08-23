@@ -106,7 +106,7 @@
 	function checkValidation(){
 	    var name = document.getElementById('PolicyName').value;
 	
-	    if(/[^a-zA-Z0-9]/.test(name)){
+	    if(/[^a-zA-Z0-9 ]/.test(name)){
 	    	alert('Policy Name cannot contain special characters');
 	    	document.getElementById("submitForm").disabled = true;
 	    }

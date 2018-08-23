@@ -93,12 +93,12 @@
 	    var name = document.getElementById('PolicyName').value;
 	    var prereq = document.getElementById('Prerequisites').value;
 	
-	    if((/[^a-zA-Z]/g, "").test(name)){
+	    if (/[^a-zA-Z0-9 ]/.test(name)){
 	    	alert('Policy Name cannot contain special characters');
 	    	document.getElementById("submitForm").disabled = true;
 	    }
 	    
-	    else if (/[^a-zA-Z0-9]/.test(prereq)) {
+	    else if (/[^a-zA-Z0-9 ]/.test(prereq)) {
 	    	alert('Pre-requisites cannot contain special characters');
 	    	document.getElementById("submitForm").disabled = true;
 	    }
